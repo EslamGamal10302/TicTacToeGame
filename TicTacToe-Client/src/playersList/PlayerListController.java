@@ -5,6 +5,7 @@
  */
 package playersList;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -12,9 +13,16 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import playersList.playersListCell.*;
 
 /**
@@ -26,13 +34,39 @@ public class PlayerListController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */@FXML
+     */
+    
+    
+    @FXML
+    private Button recordsBut;
+    @FXML
     private ListView<PlayersData> playerList;
-      private ObservableList<PlayersData> playersObservableList; 
+     
+     private ObservableList<PlayersData> playersObservableList; 
+      
+      
+       @FXML
+    void goToRecords(ActionEvent event) {
+        try {
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent  myNewScens = FXMLLoader.load(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
+            Scene scene = new Scene(myNewScens);
+            stage.setScene(scene);
+            stage.setTitle("My New Scene");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         playersObservableList =FXCollections.observableArrayList();
         playersObservableList.addAll(
+                new PlayersData("ahmed", "200", "Online"),
+                new PlayersData("ali", "50", "inGame"),
+                new PlayersData("osama", "100", "Ofline"),
                 new PlayersData("ahmed", "200", "Online"),
                 new PlayersData("ali", "50", "inGame"),
                 new PlayersData("osama", "100", "Ofline")

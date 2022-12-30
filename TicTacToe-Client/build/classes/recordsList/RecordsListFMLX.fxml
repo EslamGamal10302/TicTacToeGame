@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="playersList.PlayerListController">
+<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recordsList.RecordsListController">
    <children>
       <ImageView fitHeight="465.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -30,9 +30,9 @@
             <Font name="Harlow Solid Italic" size="35.0" />
          </font>
       </Label>
-      <Button fx:id="recordsBut" layoutX="672.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToRecords" prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" text="records" />
+      <Button fx:id="playerBut" layoutX="672.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToPlayers" prefHeight="54.0" prefWidth="85.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" text="Players" />
       <Button layoutX="406.0" layoutY="54.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="187.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" text="Home" />
       <Button layoutX="657.0" layoutY="54.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" text="logout" />
-      <ListView fx:id="playerList" layoutX="49.0" layoutY="153.0" prefHeight="277.0" prefWidth="521.0" style="-fx-background-color: transparent;" />
+      <ListView fx:id="recordsList" layoutX="49.0" layoutY="153.0" prefHeight="277.0" prefWidth="521.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>
