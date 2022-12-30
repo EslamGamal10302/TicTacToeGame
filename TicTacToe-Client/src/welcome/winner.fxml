@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="welcome.WinnerController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="welcome.WinnerController">
    <children>
       <StackPane>
          <children>
@@ -17,7 +16,7 @@
                   <Image url="@YOU%20WIN@1x.png" />
                </image>
             </ImageView>
-            <Pane fx:id="ButtonRePlay">
+            <Pane>
                <children>
                   <Button fx:id="ButtonRePlay" blendMode="COLOR_BURN" layoutX="11.0" layoutY="238.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="198.0" />
                   <Button fx:id="ButtonExit" blendMode="COLOR_BURN" layoutX="383.0" layoutY="238.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="198.0" />
