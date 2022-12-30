@@ -3,31 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tictactoe.client;
+package login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
+ * FXML Controller class
  *
  * @author Dell
  */
-public class FXMLDocumentController implements Initializable {
+public class LoginController implements Initializable {
+
+    /**
+     * Initializes the controller class.
+     */
+    
+    
     
     @FXML
-    private Label label;
-    
+    private TextField userName;
+
     @FXML
-    private void handleButtonAction(ActionEvent event) throws Exception {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!"); 
-        Utility.changeTOScene(getClass(), event, "/login/login.fxml"); 
-    }
-    
+    private TextField password;
+
+    @FXML
+    private Button login;
+
+    @FXML
+    private Button signUp;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
