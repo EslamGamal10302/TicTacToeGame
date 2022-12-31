@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 
 
+
         <group/>
 
         <group>
@@ -17,6 +18,19 @@
         <group>
             <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
             <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/board.fxml</file>
+        </group>
+
+
+        <group>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/recordsList/RecordsListFMLX.fxml</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/recordsList/recordsListCell/OldGames.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/recordsList/recordsListCell/RecordsListCellController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/FXMLDocumentController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/PlayerListController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/recordsList/RecordsListController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/recordsList/recordsListCell/RecordsListCellFMLX.fxml</file>
         </group>
 
     </open-files>

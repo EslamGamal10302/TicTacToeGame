@@ -24,8 +24,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws Exception {
         System.out.println("You clicked me!");
+
         label.setText("Hello World!"); 
         Utility.changeTOScene(getClass(), event, "/login/login.fxml"); 
+
     }
     
     @Override
