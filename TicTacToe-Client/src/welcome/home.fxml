@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="welcome.HomeController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="welcome.HomeController">
    <children>
       <StackPane layoutX="-2.0">
          <children>
@@ -20,27 +19,27 @@
             </ImageView>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ButtonSinglePlayer" layoutX="203.0" layoutY="73.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="SINGLE PLAYER" textFill="WHITE">
+                  <Button fx:id="ButtonSinglePlayer" layoutX="203.0" layoutY="73.0" mnemonicParsing="false" onAction="#startSinglePlayreGame" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="SINGLE PLAYER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonMultiPlayer" layoutX="206.0" layoutY="163.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="MULTI PLAYER" textFill="WHITE">
+                  <Button fx:id="ButtonMultiPlayer" layoutX="206.0" layoutY="163.0" mnemonicParsing="false" onAction="#startMultiPlayerGame" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="MULTI PLAYER" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonOnlineMode" layoutX="203.0" layoutY="252.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="ONLINE MODE" textFill="WHITE">
+                  <Button fx:id="ButtonOnlineMode" layoutX="203.0" layoutY="252.0" mnemonicParsing="false" onAction="#startOnlineGame" prefHeight="68.0" prefWidth="195.0" style="-fx-background-color: rgb(0, 0, 128);" text="ONLINE MODE" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonREC" blendMode="COLOR_BURN" layoutX="498.0" layoutY="275.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="85.0" textFill="#461379">
+                  <Button fx:id="ButtonREC" blendMode="COLOR_BURN" layoutX="498.0" layoutY="275.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="51.0" prefWidth="85.0" textFill="#461379">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonHome" blendMode="COLOR_BURN" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="63.0" textFill="#461379">
+                  <Button fx:id="ButtonHome" blendMode="COLOR_BURN" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="47.0" prefWidth="63.0" textFill="#461379">
                      <font>
                         <Font size="24.0" />
                      </font>

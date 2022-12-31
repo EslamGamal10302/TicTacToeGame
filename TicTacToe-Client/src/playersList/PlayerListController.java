@@ -24,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import playersList.playersListCell.*;
+import tictactoe.client.Utility;
+import welcome.HomeController;
 
 /**
  * FXML Controller class
@@ -60,6 +62,21 @@ public class PlayerListController implements Initializable {
         
 
     }
+    
+    
+    @FXML
+    void homeButtonAction(ActionEvent event) {
+    try {
+            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         playersObservableList =FXCollections.observableArrayList();

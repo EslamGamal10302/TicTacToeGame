@@ -27,6 +27,8 @@ import playersList.playersListCell.PlayerCellController;
 import playersList.playersListCell.PlayersData;
 import recordsList.recordsListCell.OldGames;
 import recordsList.recordsListCell.RecordsListCellController;
+import tictactoe.client.Utility;
+import welcome.HomeController;
 
 /**
  * FXML Controller class
@@ -44,9 +46,45 @@ public class RecordsListController implements Initializable {
     private ListView<OldGames> recordsList;
     private ObservableList<OldGames> recordsObservableList; 
     
+    
+    
+    
+     
+    
+    @FXML
+    void homeButtonAction(ActionEvent event) {
+      try {
+            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+
+    @FXML
+    void logoutButtonAction(ActionEvent event) {
+    
+        
+    }
+    
+    
+    
+    
+    
+    
     @FXML
     void goToPlayers(ActionEvent event) {
-        try {
+      try {
+            Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+        
+        
+        
+        
+        /*  try {
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             Parent  myNewScens = FXMLLoader.load(getClass().getResource("/playersList/PlayerListFXML.fxml"));
             Scene scene = new Scene(myNewScens);
@@ -55,10 +93,10 @@ public class RecordsListController implements Initializable {
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(RecordsListController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  */
       
 
-    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
