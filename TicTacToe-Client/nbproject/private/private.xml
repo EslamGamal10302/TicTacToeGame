@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/signup.fxml</file>
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/FXMLDocumentController.java</file>
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
+        </group>
+>>>>>>> eslam
     </open-files>
 </project-private>
