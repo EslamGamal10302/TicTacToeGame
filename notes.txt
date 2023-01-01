@@ -1,0 +1,16 @@
+1-ui server (start, stop, graph )
+
+2- a-class Gamelogic ( inherent from it )> class OnlineGame(send ,receive) ,class MultiPlayer ,class SinglePlayer(computer move)
+   Mthod (check for winner , change turn ,isEmpty)
+
+   b-class player data
+   c-class records
+   d-static class challenge(must be singleton)
+
+3-server
+ 1-class game logic
+ 2-class data access layer 
+ 3-class player data
+ 4-class records
+ 5-class request
+ 6-class user receiver
