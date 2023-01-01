@@ -3,12 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/signup.fxml</file>
-            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/FXMLDocumentController.java</file>
-            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
-            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
-        </group>
-        <group>
             <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
             <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/board.fxml</file>
         </group>
@@ -33,5 +27,6 @@
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
         </group>
+        <group/>
     </open-files>
 </project-private>
