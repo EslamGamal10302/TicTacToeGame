@@ -8,11 +8,15 @@ package gameBoard;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import tictactoe.client.Utility;
+import welcome.HomeController;
 
 
 /**
@@ -60,7 +64,11 @@ public class BoardController implements Initializable {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
-
+       try {
+            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @FXML
