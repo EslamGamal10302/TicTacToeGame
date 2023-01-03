@@ -34,14 +34,14 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonREC" blendMode="COLOR_BURN" layoutX="498.0" layoutY="275.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="51.0" prefWidth="85.0" textFill="#461379">
+                  <Button fx:id="ButtonHome" blendMode="COLOR_BURN" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="47.0" prefWidth="63.0" textFill="#461379">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ButtonHome" blendMode="COLOR_BURN" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="47.0" prefWidth="63.0" textFill="#461379">
+                  <Button fx:id="recordingButton" layoutX="491.0" layoutY="278.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="51.0" prefWidth="108.0" style="-fx-background-color: #ffff66; -fx-background-radius: 20;" text="Recordings">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
                </children>

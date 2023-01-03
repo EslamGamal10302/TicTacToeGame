@@ -38,10 +38,10 @@ public class HomeController implements Initializable {
     private Button ButtonOnlineMode;
 
     @FXML
-    private Button ButtonREC;
-
-    @FXML
     private Button ButtonHome;
+    
+    @FXML
+    private Button recordingButton;
     
      @FXML
     void exitGame(ActionEvent event) {
@@ -61,7 +61,7 @@ public class HomeController implements Initializable {
     @FXML
     void startMultiPlayerGame(ActionEvent event) {
        try {
-            Utility.changeTOScene(getClass(), event, "/gameBoard/board.fxml");
+            Utility.changeTOScene(getClass(), event, "/gameBoard/TwoPlayersGameBoard.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
