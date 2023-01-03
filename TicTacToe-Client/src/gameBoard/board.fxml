@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gameBoard.BoardController">
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameBoard.BoardController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -38,15 +37,15 @@
             <Bloom />
          </effect>
       </Line>
-      <ImageView fx:id="position_3" fitHeight="66.0" fitWidth="101.0" layoutX="361.0" layoutY="107.0" onMouseClicked="#positionThreeClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_6" fitHeight="66.0" fitWidth="93.0" layoutX="365.0" layoutY="181.0" onMouseClicked="#positionSixClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_3" fitHeight="58.0" fitWidth="86.0" layoutX="365.0" layoutY="107.0" onMouseClicked="#positionThreeClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_6" fitHeight="58.0" fitWidth="86.0" layoutX="365.0" layoutY="181.0" onMouseClicked="#positionSixClicked" pickOnBounds="true" />
       <ImageView fx:id="position_1" fitHeight="58.0" fitWidth="86.0" layoutX="135.0" layoutY="109.0" onMouseClicked="#positionOneClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_5" fitHeight="66.0" fitWidth="101.0" layoutX="243.0" layoutY="185.0" onMouseClicked="#positionFiveClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_9" fitHeight="66.0" fitWidth="93.0" layoutX="365.0" layoutY="265.0" onMouseClicked="#positionNineClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_8" fitHeight="66.0" fitWidth="110.0" layoutX="238.0" layoutY="269.0" onMouseClicked="#positionEightClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_4" fitHeight="73.0" fitWidth="93.0" layoutX="133.0" layoutY="181.0" onMouseClicked="#positionFourClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_2" fitHeight="66.0" fitWidth="101.0" layoutX="245.0" layoutY="106.0" onMouseClicked="#positionTwoClicked" pickOnBounds="true" />
-      <ImageView fx:id="position_7" fitHeight="73.0" fitWidth="93.0" layoutX="133.0" layoutY="265.0" onMouseClicked="#positionSevenClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_5" fitHeight="58.0" fitWidth="86.0" layoutX="255.0" layoutY="181.0" onMouseClicked="#positionFiveClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_9" fitHeight="58.0" fitWidth="86.0" layoutX="365.0" layoutY="265.0" onMouseClicked="#positionNineClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_8" fitHeight="58.0" fitWidth="86.0" layoutX="255.0" layoutY="265.0" onMouseClicked="#positionEightClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_4" fitHeight="58.0" fitWidth="86.0" layoutX="133.0" layoutY="181.0" onMouseClicked="#positionFourClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_2" fitHeight="58.0" fitWidth="86.0" layoutX="255.0" layoutY="109.0" onMouseClicked="#positionTwoClicked" pickOnBounds="true" />
+      <ImageView fx:id="position_7" fitHeight="58.0" fitWidth="86.0" layoutX="133.0" layoutY="265.0" onMouseClicked="#positionSevenClicked" pickOnBounds="true" />
       <ImageView fx:id="player_1" fitHeight="80.0" fitWidth="101.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/player1.png" />
