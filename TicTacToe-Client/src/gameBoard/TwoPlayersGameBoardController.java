@@ -232,6 +232,7 @@ public class TwoPlayersGameBoardController implements Initializable {
     void positionOneClicked(MouseEvent event) {
       choosePlayer();
       position_1.setImage(image);
+      position_1.setDisable(false);
       id=position_1.getId();
       c = id.charAt(9);
       position=Integer.parseInt(String.valueOf(c));
