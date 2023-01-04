@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="392.0" prefWidth="610.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gameBoard.TwoPlayersGameBoardController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="392.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameBoard.TwoPlayersGameBoardController">
    <children>
       <ImageView fitHeight="411.0" fitWidth="618.0" layoutX="-3.0" pickOnBounds="true">
          <image>
@@ -62,7 +61,7 @@
             <Font size="66.0" />
          </font>
       </Text>
-      <Text fill="#f2fa15" layoutX="56.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 1" wrappingWidth="47.49999165534973" />
+      <Text fill="#f2fa15" layoutX="53.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 1" wrappingWidth="52.59522271156311" />
       <Text fill="#f2fa15" layoutX="491.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 2" />
       <Button fx:id="back_button1" layoutX="504.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" prefHeight="29.0" prefWidth="65.0" style="-fx-background-color: #ffff66; -fx-background-radius: 10;" text="Rec" />
    </children>
