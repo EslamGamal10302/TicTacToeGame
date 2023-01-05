@@ -1,0 +1,24 @@
+CREATE TABLE PLAYER (
+                   username VARCHAR(20) not NULL, 
+                   password VARCHAR(20) not NULL,  
+                   email VARCHAR(20),
+                   no_games INTEGER,  
+                   score INTEGER,  
+                   status INTEGER not NULL,       
+                   PRIMARY KEY (username));
+
+CREATE TABLE Game (
+                   player_1 VARCHAR(20) not NULL, 
+                   player_2 VARCHAR(20) not NULL,  
+                   date_game date not NULL,
+                   status INTEGER,  
+                   step_1 INTEGER, 
+                   step_2 INTEGER,
+                   step_3 INTEGER,
+                   step_4 INTEGER,
+                   step_5 INTEGER,
+                   step_6 INTEGER,
+                   step_7 INTEGER,
+                   step_8 INTEGER,
+                   step_9 INTEGER,   
+                   PRIMARY KEY (player_1,player_2,date_game));
