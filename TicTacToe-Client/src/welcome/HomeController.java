@@ -71,7 +71,7 @@ public class HomeController implements Initializable {
     void startOnlineGame(ActionEvent event) {
         System.out.println("active");
         try {
-            Utility.changeTOScene(getClass(), event, "/login/login.fxml");
+            Utility.changeTOScene(getClass(), event, "/gameBoard/OnlineGameBoard.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         } 

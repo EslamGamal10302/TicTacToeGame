@@ -7,15 +7,19 @@ package gameBoard;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import onlineGame.OnlineGame;
 
 /**
@@ -25,10 +29,13 @@ import onlineGame.OnlineGame;
  */
 public class OnlineGameBoardController implements Initializable {
     private OnlineGame onlineGameHandler;
-    private boolean playerTurn; 
+    private int playerTurn; 
+    private int currentTurn;
     private boolean playerMoved;
-    
     private String currentImageUrl;
+ 
+    @FXML
+    private AnchorPane anchor;
     @FXML
     private Button back_button;
 
@@ -120,15 +127,17 @@ public class OnlineGameBoardController implements Initializable {
         sendMove(2, event);
     }
     private void sendMove(int position,MouseEvent event){
-        if(!playerMoved && playerTurn && ((ImageView)event.getSource()).getImage()==null ){
+    
+        if(!playerMoved /*&& playerTurn==currentTurn*/ && ((ImageView)event.getSource()).getImage()==null ){
            onlineGameHandler.sendMoveToServer(position);
-           playerMoved=false;
+            
+           playerMoved=true;
         }
         
     
     }
-    public void setImage(int position){
-        switch(position){
+    public void setImage(Long position){
+        switch(position.intValue()){
             case 1:
                 position_1.setImage(new Image(currentImageUrl));
                 break;
@@ -157,28 +166,73 @@ public class OnlineGameBoardController implements Initializable {
                 position_9.setImage(new Image(currentImageUrl)); 
                 break;
         }
-        currentImageUrl= "";
-        changeTurn();
+         System.out.println("currentTurn ="+currentTurn);
+        if(currentTurn==1){
+           
+            currentImageUrl= "/assets/xchar.png"; 
+        }else{currentImageUrl= "/assets/ochar.png";  }
+        
     }
-    public void winner(int position1,int position2){
+    public void winner(long position1,long position2){
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Random random = new Random(); 
+        random.nextInt();
         try {
             onlineGameHandler = new OnlineGame(this);
         } catch (IOException ex) {
             Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         playerMoved = false;
-        playerTurn = true;
-        currentImageUrl= "";
+        playerTurn = 1;
+       
+        currentTurn=1;
+        currentImageUrl="/assets/xchar.png"; 
         
-    }    
+    }   
+    
+    
 
-    private void changeTurn() {
-       playerTurn = !playerTurn;
+    public void changeTurn(Long currentTurn) {
+       
+        this.currentTurn = currentTurn.intValue();
        playerMoved = false;
+    }
+
+    public void drawLine(long pos1,long pos2) {
+        playerTurn=0;
+        if (pos1==1&&pos2==3){
+            drawLine(position_1,position_3);
+        }else if(pos1==4&&pos2==6){
+            drawLine(position_4,position_6);
+        }else if(pos1==7&&pos2==9){
+            drawLine(position_7,position_9);
+        }else if(pos1==1&&pos2==7){
+            drawLine(position_1,position_7);
+        }else if(pos1==2&&pos2==8){
+            drawLine(position_2,position_8);
+        }else if(pos1==3&&pos2==9){
+            drawLine(position_3,position_9);
+        }else if(pos1==1&&pos2==9){
+            drawLine(position_1,position_9);
+        }else if(pos1==3&&pos2==7){
+            drawLine(position_3,position_7);
+        }
+    }
+    private void drawLine(ImageView b1, ImageView b2){
+        Bounds bound1 = b1.localToScene(b1.getBoundsInLocal());
+        Bounds bound2 = b2.localToScene(b2.getBoundsInLocal());
+        double x1, y1, x2, y2;
+        x1 = (bound1.getMinX() + bound1.getMaxX())/2 ;
+        y1 = (bound1.getMinY() + bound1.getMaxY())/2;
+        x2 = (bound2.getMinX() + bound2.getMaxX())/2 ;
+        y2 = (bound2.getMinY() + bound2.getMaxY())/2;
+        Line line = new Line(x1,y1,x2,y2);
+        line.setStyle("-fx-stroke: red;");
+        line.setStrokeWidth(10);
+        anchor.getChildren().add(line);
     }
     
 }

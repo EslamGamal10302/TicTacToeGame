@@ -16,10 +16,16 @@ public class moveJsonMaker {
     
         return new String("{\"position\":"+position+"}");
     }
-     public static int getPosition(String jsonString) throws ParseException{
-        JSONObject position= (JSONObject) new JSONParser().parse(jsonString);
-        position.get("position");
+     public static PlayerMove getMove(String jsonString) throws ParseException{
+        JSONObject moveJson= (JSONObject) new JSONParser().parse(jsonString);
+        long tempPosition = ((long)moveJson.get("position"));
+        long winPosition1 = ((long)moveJson.get("winPosition1"));
+        long winPosition2 = ((long)moveJson.get("winPosition2"));
+        long playerTurn = ((long)moveJson.get("playerTurn"));
+        
+        
     
-        return (int) position.get("position");
+        return new PlayerMove(tempPosition, winPosition1,
+               winPosition2, playerTurn, (boolean)moveJson.get("win"));
     }
 }

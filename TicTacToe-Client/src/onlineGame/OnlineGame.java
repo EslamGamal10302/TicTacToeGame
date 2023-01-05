@@ -28,7 +28,7 @@ public class OnlineGame {
     private PrintStream clientOutputStream;
     private OnlineGameBoardController gameController;
     private String positionJson;
-    private int position;
+    private PlayerMove move;
 
     public OnlineGame(OnlineGameBoardController gameController) throws IOException {
         this.gameController = gameController;
@@ -47,15 +47,22 @@ public class OnlineGame {
             while (true) {                
                 BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(clientInputStream));
                 try {
-                    position= moveJsonMaker.getPosition(clientBufferedReader.readLine());
+                    move= moveJsonMaker.getMove(clientBufferedReader.readLine());
                 } catch (IOException ex) {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                if(move.isWin()){
+                    Platform.runLater(() -> {
+                        gameController.drawLine(move.getWinPosition1(),move.getWinPosition2());
+                    });
+                }else{
+                   gameController.changeTurn(move.getPlayerTurn()); 
+                }
                 Platform.runLater(() -> {
-                    gameController.setImage(position);
-                });
+                        gameController.setImage(move.getPosition());
+                    });
             }
         }).start();
 
