@@ -16,15 +16,6 @@
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/moveJsonMaker.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/assets/background.jpg</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/assets/Image%209@1x.png</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/WinnerController.java</file>
-        </group>
-        <group>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/OnlineGame.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/moveJsonMaker.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/PlayerMove.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
@@ -36,6 +27,13 @@
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/PlayerMove.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
+        </group>
+        <group>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
         </group>
     </open-files>

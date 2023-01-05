@@ -90,10 +90,10 @@ public class BoardController implements Initializable {
     boolean pos8_IsClicked = true;
     boolean pos9_IsClicked = true;
     boolean[] Clicked = {pos1_IsClicked,pos2_IsClicked,pos3_IsClicked,pos4_IsClicked,pos5_IsClicked,pos6_IsClicked,pos7_IsClicked,pos8_IsClicked,pos9_IsClicked};
-     public void choosePlayer(){
+     public void choosePlayer() {
      if (move.equalsIgnoreCase("x")) {  
          storedMove=move;
-        image = new Image("/assets/xchar.png"); 
+        image = new Image("/assets/xchar.png");
         move = "o";
      }     else {
            storedMove=move;
@@ -115,22 +115,39 @@ public class BoardController implements Initializable {
         line.setStrokeWidth(10);
         anchor_online.getChildren().add(line);
     }
-     private void computerTurn(){
-        ImageView[] btns = {position_1,position_2,position_3,position_4,position_5,position_6,position_7,position_8,position_9};
-        ImageView myBtn;
+     
+     private void computerTurn()  {
         
-        boolean flag_pos = true;
-        while(flag_pos)
-        {
-            if(Clicked[i])
-            { 
-             myBtn = btns[i];
-             myBtn.setImage(image);   
-             flag_pos = false;
-             Clicked[i]=false;
-            }
-            i++;
-        }
+          new Thread(() -> {
+            try {
+                  Thread.sleep(1000);
+              } catch (InterruptedException ex) {
+                  Logger.getLogger(TwoPlayersGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+              }
+
+
+            Platform.runLater(() ->{
+
+             ImageView[] btns = {position_1,position_2,position_3,position_4,position_5,position_6,position_7,position_8,position_9};
+             ImageView myBtn;
+             boolean flag_pos = true;
+                while(flag_pos)
+                {
+                  if(Clicked[i])
+                   { 
+                    myBtn = btns[i];
+                    myBtn.setImage(image);   
+                    flag_pos = false;
+                    Clicked[i]=false;
+                   }
+                 i++;
+               }
+
+             });
+             
+
+        }).start();
+     
     }
     
     public int  checkWinner(){
@@ -367,7 +384,7 @@ public class BoardController implements Initializable {
       if(flag == 1){
          goToWinScreen(event);    
        }
-      else{   
+      else{ 
        choosePlayer();
        computerTurn();
        played[i]=storedMove;
