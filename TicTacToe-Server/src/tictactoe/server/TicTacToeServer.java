@@ -27,21 +27,7 @@ public class TicTacToeServer extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        new Thread(() -> {
-            
-            try {
-                serverSocket = new ServerSocket(5005);
-                while(true)
-            {
-                Socket clientSocket= serverSocket.accept();
-                new RequestHandler(clientSocket);
-            }
-            } catch (IOException ex) {
-                Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        
-        }).start();
+       
         
         Scene scene = new Scene(root);
         
