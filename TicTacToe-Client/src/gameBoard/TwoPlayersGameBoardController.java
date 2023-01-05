@@ -82,13 +82,13 @@ public class TwoPlayersGameBoardController implements Initializable {
     private int flag = 0 ;
     boolean pos1_IsClicked = true;
     boolean pos2_IsClicked = true;
-    boolean pos3_IsClicked = true;;
-    boolean pos4_IsClicked = true;;
-    boolean pos5_IsClicked = true;;
-    boolean pos6_IsClicked = true;;
-    boolean pos7_IsClicked = true;;
-    boolean pos8_IsClicked = true;;
-    boolean pos9_IsClicked = true;;
+    boolean pos3_IsClicked = true;
+    boolean pos4_IsClicked = true;
+    boolean pos5_IsClicked = true;
+    boolean pos6_IsClicked = true;
+    boolean pos7_IsClicked = true;
+    boolean pos8_IsClicked = true;
+    boolean pos9_IsClicked = true;
    
     
     
@@ -120,7 +120,6 @@ public class TwoPlayersGameBoardController implements Initializable {
     
     public void  checkWinner(){
      if (played[1]=="x" && played[2]=="x" && played[3]=="x"){
-         System.out.println("YOU WIN");
          drawLine(position_1,position_3);
           flag = 1 ; 
           
@@ -153,7 +152,6 @@ public class TwoPlayersGameBoardController implements Initializable {
           drawLine(position_3,position_7);
          flag = 1 ; 
      } 
-     // fffffffff 
      else if (played[1]=="o" && played[2]=="o" && played[3]=="o"){
           drawLine(position_1,position_3);
          flag = 1 ; 
