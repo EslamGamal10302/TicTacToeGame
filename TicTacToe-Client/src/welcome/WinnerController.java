@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
 
 /**
  * FXML Controller class
@@ -21,6 +23,8 @@ public class WinnerController implements Initializable {
     /**
      * Initializes the controller class.
      */
+      @FXML
+    private ImageView image;
      @FXML
     private Button ButtonRePlay;
 
@@ -29,6 +33,7 @@ public class WinnerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
     }    
     
 }

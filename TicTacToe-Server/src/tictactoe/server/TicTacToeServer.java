@@ -6,9 +6,14 @@
 package tictactoe.server;
 
 import gameHandler.RequestHandler;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -16,6 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -23,22 +31,62 @@ import javafx.stage.Stage;
  */
 public class TicTacToeServer extends Application {
     ServerSocket serverSocket;
+    DataInputStream serverDataInput;
+   PrintStream serverDataOutput;
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         new Thread(() -> {
             try {
-            serverSocket = new ServerSocket(5005);
-            while(true)
-            {
-                Socket clientSocket = serverSocket.accept();
-                new RequestHandler(clientSocket);
-            }  } catch (IOException ex) {
-            Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+           
+                serverSocket = new ServerSocket(5005);
+         while (true){
+               Socket clientSocket = serverSocket.accept();
+               serverDataInput = new DataInputStream(clientSocket.getInputStream());
+               serverDataOutput = new PrintStream(clientSocket.getOutputStream());
+               BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
+               String client = clientBufferedReader.readLine();
+               System.out.println(client);
+               JSONObject positionJson= (JSONObject) new JSONParser().parse(client); 
+                
+                long type =(long) positionJson.get("type");
+               if (type ==1){
+                    /*String name_singUp =(String) positionJson.get("userName");
+                    String email_signUp =(String) positionJson.get("email");
+                    String password_signUp =(String) positionJson.get("password");
+                   
+                    System.out.println(name_singUp);
+                    System.out.println(email_signUp);
+                    System.out.println(password_signUp);*/
+                    int status=1;
+                    int x =DataAccessmethods.signUp(positionJson,status);
+                    System.out.println(x);
+               }
+            
+               
+             //  int x=DataAccessmethods.login(positionJson);
+             // to send the data to DB for login 
+             //  DataAccessmethods.signUp(positionJson);
+             //to send the data to DB to sign up 
+                //serverDataOutput.println("recevied"); 
+            }
+                //new RequestHandler(clientSocket);
+            }   catch (IOException | ParseException ex) {
+             Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                
+                
+                Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+         
+            
+              
         }).start();
-       
+
         
         Scene scene = new Scene(root);
         

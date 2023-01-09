@@ -11,7 +11,7 @@
    <children>
       <StackPane>
          <children>
-            <ImageView fitHeight="400.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="400.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@YOU%20WIN@1x.png" />
                </image>
