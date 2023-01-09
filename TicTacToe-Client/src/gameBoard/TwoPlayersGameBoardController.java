@@ -72,6 +72,10 @@ public class TwoPlayersGameBoardController implements Initializable {
     @FXML
     private ImageView player_2;
     
+   // @FXML
+    //private MediaView video;
+    //@FXML
+   // private MediaPlayer  mediaPlayer;
     private String move ;
     private String storedMove;
     private String id ;
@@ -89,7 +93,9 @@ public class TwoPlayersGameBoardController implements Initializable {
     boolean pos7_IsClicked = true;
     boolean pos8_IsClicked = true;
     boolean pos9_IsClicked = true;
-   
+    private static int winner;
+     
+       
     
     
       public void choosePlayer(){
@@ -122,72 +128,96 @@ public class TwoPlayersGameBoardController implements Initializable {
      if (played[1]=="x" && played[2]=="x" && played[3]=="x"){
          drawLine(position_1,position_3);
           flag = 1 ; 
+          TwoPlayersGameBoardController.setWinner(1);
           
      }
      else if (played[4]=="x" && played[5]=="x" && played[6]=="x"){
           drawLine(position_4,position_6);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[7]=="x" && played[8]=="x" && played[9]=="x"){
           drawLine(position_7,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[4]=="x" && played[7]=="x"){
           drawLine(position_1,position_7);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[2]=="x" && played[5]=="x" && played[8]=="x"){
           drawLine(position_2,position_8);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[6]=="x" && played[9]=="x"){
           drawLine(position_3,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[5]=="x" && played[9]=="x"){
           drawLine(position_1,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[5]=="x" && played[7]=="x"){
           drawLine(position_3,position_7);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(1);
      } 
      else if (played[1]=="o" && played[2]=="o" && played[3]=="o"){
           drawLine(position_1,position_3);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[4]=="o" && played[5]=="o" && played[6]=="o"){
           drawLine(position_4,position_6);
-         flag = 1 ; 
+         flag = 1 ;
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[7]=="o" && played[8]=="o" && played[9]=="o"){
           drawLine(position_7,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[4]=="o" && played[7]=="o"){
           drawLine(position_1,position_7);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[2]=="o" && played[5]=="o" && played[8]=="o"){
           drawLine(position_2,position_8);
            
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[6]=="o" && played[9]=="o"){
           drawLine(position_3,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[5]=="o" && played[9]=="o"){
           drawLine(position_1,position_9);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[5]=="o" && played[7]=="o"){
           drawLine(position_3,position_7);
          flag = 1 ; 
+         TwoPlayersGameBoardController.setWinner(2);
      } 
         
     }
-
+    
+    public static void setWinner(int theWinner){
+         winner = theWinner ; 
+    }
+     public static int getWinner(){
+         return winner; 
+    }
+    
+    
     @FXML
     void backButtonClicked(MouseEvent event) {
        try {
@@ -243,11 +273,12 @@ public class TwoPlayersGameBoardController implements Initializable {
 
             Platform.runLater(() ->{
 
-             try {
-                   Utility.changeTOScene(getClass(), event, "/welcome/winner.fxml");
+             try {             //"/welcome/winner.fxml"
+                   Utility.changeTOScene(getClass(), event, "/welcome/win.fxml");
                } catch (Exception ex) {
                    Logger.getLogger(TwoPlayersGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
                }
+               //  mediaPlayer.stop();
 
              });
              
@@ -374,6 +405,13 @@ public class TwoPlayersGameBoardController implements Initializable {
         // TODO
         move="x";
         played = new String[10];
+         
+      // Media media = new Media(getClass().getResource("/assets/music.mp3").toExternalForm());
+       //mediaPlayer= new MediaPlayer(media);
+        //video.setMediaPlayer(mediaPlayer);
+        //video.setFitHeight(400);
+        //video.setFitWidth(350);
+        //mediaPlayer.play();
         //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    

@@ -5,6 +5,9 @@
  */
 package welcome;
 
+import java.io.DataInputStream;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -71,7 +74,7 @@ public class HomeController implements Initializable {
     void startOnlineGame(ActionEvent event) {
         System.out.println("active");
         try {
-            Utility.changeTOScene(getClass(), event, "/gameBoard/OnlineGameBoard.fxml");
+            Utility.changeTOScene(getClass(), event, "/login/login.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -90,6 +93,7 @@ public class HomeController implements Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         // TODO
     }    
     
