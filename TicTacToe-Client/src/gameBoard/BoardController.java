@@ -5,6 +5,7 @@
  */
 package gameBoard;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.Random;
@@ -14,14 +15,19 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import tictactoe.client.Utility;
 import welcome.HomeController;
 
@@ -79,6 +85,7 @@ public class BoardController implements Initializable {
     private String [] played ;
     private int position;
     private int flag = 0 ;
+    private int flag2=0;
     private int i=0;
     boolean pos1_IsClicked = true;
     boolean pos2_IsClicked = true;
@@ -89,6 +96,8 @@ public class BoardController implements Initializable {
     boolean pos7_IsClicked = true;
     boolean pos8_IsClicked = true;
     boolean pos9_IsClicked = true;
+    private static int winner;
+    private ActionEvent event;
     boolean[] Clicked = {pos1_IsClicked,pos2_IsClicked,pos3_IsClicked,pos4_IsClicked,pos5_IsClicked,pos6_IsClicked,pos7_IsClicked,pos8_IsClicked,pos9_IsClicked};
      public void choosePlayer() {
      if (move.equalsIgnoreCase("x")) {  
@@ -116,7 +125,7 @@ public class BoardController implements Initializable {
         anchor_online.getChildren().add(line);
     }
      
-     private void computerTurn()  {
+     private void computerTurn(MouseEvent event)  {
         
           new Thread(() -> {
             try {
@@ -131,7 +140,7 @@ public class BoardController implements Initializable {
              ImageView[] btns = {position_1,position_2,position_3,position_4,position_5,position_6,position_7,position_8,position_9};
              ImageView myBtn;
              boolean flag_pos = true;
-                while(flag_pos)
+                while(flag_pos&&i<9)
                 {
                   if(Clicked[i])
                    { 
@@ -139,8 +148,17 @@ public class BoardController implements Initializable {
                     myBtn.setImage(image);   
                     flag_pos = false;
                     Clicked[i]=false;
+                    flag2=0;
+                    played[i+1]="o";
+                       
+                    checkWinner();
+                      if(flag == 1){
+                     goToWinScreen(event);    
+                    }
                    }
+                  
                  i++;
+                  
                }
 
              });
@@ -155,73 +173,117 @@ public class BoardController implements Initializable {
          System.out.println("YOU WIN");
          drawLine(position_1,position_3);
           flag = 1 ; 
-          
+          BoardController.setWinner(1);
      }
      else if (played[4]=="x" && played[5]=="x" && played[6]=="x"){
          drawLine(position_4,position_6);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[7]=="x" && played[8]=="x" && played[9]=="x"){
          drawLine(position_7,position_9);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[4]=="x" && played[7]=="x"){
          drawLine(position_1,position_7);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[2]=="x" && played[5]=="x" && played[8]=="x"){
          drawLine(position_2,position_8);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[6]=="x" && played[9]=="x"){
          drawLine(position_3,position_9);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[5]=="x" && played[9]=="x"){
          drawLine(position_1,position_9);
          flag = 1 ; 
+         BoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[5]=="x" && played[7]=="x"){
          drawLine(position_3,position_7);
          flag = 1 ; 
+         BoardController.setWinner(1);
      } 
      else if (played[1]=="o" && played[2]=="o" && played[3]=="o"){
          drawLine(position_1,position_3);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[4]=="o" && played[5]=="o" && played[6]=="o"){
          drawLine(position_4,position_6);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[7]=="o" && played[8]=="o" && played[9]=="o"){
          drawLine(position_7,position_9);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[4]=="o" && played[7]=="o"){
          drawLine(position_1,position_7);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[2]=="o" && played[5]=="o" && played[8]=="o"){
          drawLine(position_2,position_8);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[6]=="o" && played[9]=="o"){
          drawLine(position_3,position_9);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[5]=="o" && played[9]=="o"){
          drawLine(position_1,position_9);
          flag = 1 ; 
+         BoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[5]=="o" && played[7]=="o"){
          drawLine(position_3,position_7);
          flag = 1 ; 
-     } 
-       
+         BoardController.setWinner(2);
+     } else if (Clicked[0]==false&&Clicked[1]==false&&Clicked[2]==false&&Clicked[3]==false&&Clicked[4]==false&&Clicked[5]==false&&Clicked[6]==false&&Clicked[7]==false&&Clicked[8]==false) {
+            
+
+         try {
+             BoardController.setWinner(3);
+             
+             Parent root = FXMLLoader.load(getClass().getResource("/welcome/resultVsComputer.fxml"));
+             
+             Scene scene = new Scene(root);
+             
+             Stage stage =(Stage) position_9.getScene().getWindow();
+             
+             stage.setScene(scene);
+             
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+                 
+                 
+     }
        return flag;  
         
     }
 
+      public static void setWinner(int theWinner){
+          System.out.println(theWinner);
+         winner = theWinner ; 
+    }
+     public static int getWinner(){
+         return winner; 
+    }
+    
+    
     @FXML
     void backButtonClicked(MouseEvent event) {
        try {
@@ -243,7 +305,7 @@ public class BoardController implements Initializable {
             Platform.runLater(() ->{
 
              try {
-                   Utility.changeTOScene(getClass(), event, "/welcome/winner.fxml");
+                   Utility.changeTOScene(getClass(), event, "/welcome/resultVsComputer.fxml");
                } catch (Exception ex) {
                    Logger.getLogger(TwoPlayersGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -256,7 +318,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionEightClicked(MouseEvent event) {
      //check if the square is empty to fill it
-     if(pos8_IsClicked && Clicked[7]){
+     if(pos8_IsClicked && Clicked[7]&&flag2==0){
+      flag2=1;   
       pos8_IsClicked = false;
       Clicked[7]=false;
       choosePlayer();
@@ -270,14 +333,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+      // played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+       //checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+      // }
       }
      }
     }
@@ -285,7 +348,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionFiveClicked(MouseEvent event) {
        //check if the square is empty to fill it
-     if(pos5_IsClicked && Clicked[4]){
+     if(pos5_IsClicked && Clicked[4]&&flag2==0){
+      flag2=1;      
       pos5_IsClicked = false;
       Clicked[4]=false;
       choosePlayer();
@@ -299,14 +363,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+      // played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+      // checkWinner();
+      // if(flag == 1){
+       //  goToWinScreen(event);    
+     //  }
       }
      }
     }
@@ -314,12 +378,13 @@ public class BoardController implements Initializable {
     @FXML
     void positionFourClicked(MouseEvent event) {
       //check if the square is empty to fill it
-     if(pos4_IsClicked && Clicked[3]){
+     if(pos4_IsClicked && Clicked[3]&&flag2==0){
+      flag2=1;      
       pos4_IsClicked = false;
       Clicked[3]=false;
       choosePlayer();
       position_4.setImage(image);
-      played[4]=storedMove;
+     played[4]=storedMove;
       System.out.println("4");
       System.out.println(played[4]);
       checkWinner();
@@ -328,14 +393,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+      // played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+      // checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+      // }
       }
      }
     }
@@ -343,7 +408,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionNineClicked(MouseEvent event) {
      //check if the square is empty to fill it
-     if(pos9_IsClicked && Clicked[8]){
+     if(pos9_IsClicked && Clicked[8]&&flag2==0){
+      flag2=1;      
       pos9_IsClicked = false;
       Clicked[8]=false;
       choosePlayer();
@@ -357,14 +423,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+       //played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+       //checkWinner();
+       //if(flag == 1){
+         //goToWinScreen(event);    
+       //}
       }
      }
     }
@@ -372,7 +438,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionOneClicked(MouseEvent event) {
      //check if the square is empty to fill it
-     if(pos1_IsClicked && Clicked[0] ){
+     if(pos1_IsClicked && Clicked[0]&&flag2==0 ){
+      flag2=1;      
       pos1_IsClicked = false;
       Clicked[0]=false;
       choosePlayer();
@@ -386,14 +453,15 @@ public class BoardController implements Initializable {
        }
       else{ 
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+       //played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+      // checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+      // }
+         
       }
      }
     }
@@ -401,7 +469,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionSevenClicked(MouseEvent event) {
      //check if the square is empty to fill it
-     if(pos7_IsClicked && Clicked[6]){
+     if(pos7_IsClicked && Clicked[6]&&flag2==0){
+      flag2=1;      
       pos7_IsClicked = false;
       Clicked[6]=false;
       choosePlayer();
@@ -415,14 +484,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+      // played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+       //checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+       //}
       }
      }
     }
@@ -430,7 +499,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionSixClicked(MouseEvent event) {
       //check if the square is empty to fill it
-     if(pos6_IsClicked && Clicked[5]){
+     if(pos6_IsClicked && Clicked[5]&&flag2==0){
+       flag2=1;     
       pos6_IsClicked = false;
       Clicked[5]=false;
       choosePlayer();
@@ -444,14 +514,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+       //played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+       //checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+       //}
       }
      }
     }
@@ -459,7 +529,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionThreeClicked(MouseEvent event) {
       //check if the square is empty to fill it
-     if(pos3_IsClicked && Clicked[2]){
+     if(pos3_IsClicked && Clicked[2]&&flag2==0){
+      flag2=1;      
       pos3_IsClicked = false;
       Clicked[2]=false;
       choosePlayer();
@@ -473,14 +544,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+       //played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+       //checkWinner();
+      // if(flag == 1){
+        // goToWinScreen(event);    
+       //}
       }
      }
     }
@@ -488,7 +559,8 @@ public class BoardController implements Initializable {
     @FXML
     void positionTwoClicked(MouseEvent event) {
       //check if the square is empty to fill it
-     if(pos2_IsClicked && Clicked[1]){
+     if(pos2_IsClicked && Clicked[1]&&flag2==0){
+      flag2=1;      
       pos2_IsClicked = false;
       Clicked[1]=false;
       choosePlayer();
@@ -502,14 +574,14 @@ public class BoardController implements Initializable {
        }
       else{
        choosePlayer();
-       computerTurn();
-       played[i]=storedMove;
+       computerTurn(event);
+      // played[i]=storedMove;
        System.out.println(i);
        System.out.println(played[i]);
-       checkWinner();
-       if(flag == 1){
-         goToWinScreen(event);    
-       }
+      // checkWinner();
+       //if(flag == 1){
+        // goToWinScreen(event);    
+      // }
       }
      }
     }
