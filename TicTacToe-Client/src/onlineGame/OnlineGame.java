@@ -49,6 +49,7 @@ public class OnlineGame {
                 try {
                     move= moveJsonMaker.getMove(clientBufferedReader.readLine());
                 } catch (IOException ex) {
+                    
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);

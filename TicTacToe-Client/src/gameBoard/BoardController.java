@@ -97,7 +97,7 @@ public class BoardController implements Initializable {
         move = "o";
      }     else {
            storedMove=move;
-           image = new Image("/assets/ochar.png"); 
+           image = new Image("/assets/ochar (1).png"); 
            move = "x";        
            }
     }
