@@ -63,7 +63,23 @@ public class TicTacToeServer extends Application {
                     int x =DataAccessmethods.signUp(positionJson,status);
                     System.out.println(x);
                }
-            
+               else if (type==2){
+                   String name_login =(String) positionJson.get("userName");
+                   String password_login =(String) positionJson.get("password");
+                   System.out.println(name_login);
+                   System.out.println(password_login);
+                   int x =DataAccessmethods.login(positionJson);
+                   System.out.println(x);
+                   if (x==1){
+                       
+                      System.out.println("success"); 
+                      serverDataOutput.println("success_login"); 
+                   }
+                   else{
+                       System.out.println("fail login"); 
+                      serverDataOutput.println("fail_login"); 
+                   }
+               }
                
              //  int x=DataAccessmethods.login(positionJson);
              // to send the data to DB for login 
@@ -75,8 +91,6 @@ public class TicTacToeServer extends Application {
             }   catch (IOException | ParseException ex) {
              Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                
-                
                 Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
             }
             
