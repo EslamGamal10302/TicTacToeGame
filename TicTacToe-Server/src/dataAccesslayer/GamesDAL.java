@@ -21,10 +21,10 @@ import java.util.List;
 public class GamesDAL {
 
     public static int insertGame(Game game) throws SQLException{
-       
+        
                 int rs;
                 DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
                 PreparedStatement ps = con.prepareStatement("insert into GAME VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
                 ps.setString(1,game.getPlayer_1());
                 ps.setString(2,game.getPlayer_2());
