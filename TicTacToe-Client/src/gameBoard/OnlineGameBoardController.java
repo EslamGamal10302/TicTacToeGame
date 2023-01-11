@@ -169,8 +169,8 @@ public class OnlineGameBoardController implements Initializable {
          System.out.println("currentTurn ="+currentTurn);
         if(currentTurn==1){
            
-            currentImageUrl= "/assets/xchar.png"; 
-        }else{currentImageUrl= "/assets/ochar.png";  }
+            currentImageUrl= "/assets/xchar (1).png"; 
+        }else{currentImageUrl= "/assets/ochar (1).png";  }
         
     }
     public void winner(long position1,long position2){

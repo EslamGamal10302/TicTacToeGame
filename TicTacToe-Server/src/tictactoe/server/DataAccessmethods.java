@@ -8,6 +8,7 @@ package tictactoe.server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.json.simple.JSONObject;
 
@@ -18,14 +19,22 @@ import org.json.simple.JSONObject;
 public class DataAccessmethods {
     
     
-       public static int signUp(JSONObject positionJson) throws SQLException {
+       public static int signUp(JSONObject positionJson ,int status) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
-        PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER VALUES (? , ? , ? )");
+        //PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER VALUES (? , ?,? )");
+        PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
+        
+        /*pst.setString(1,name);
+        pst.setString(2,email);
+        pst.setString(3,password);
+        pst.setInt(4,status);*/
         pst.setString(1, (String) positionJson.get("userName"));
         pst.setString(2, (String) positionJson.get("password"));
         pst.setString(3, (String) positionJson.get("email"));
+        pst.setInt(4, status);
+  
         result = pst.executeUpdate();
 
         con.commit();
@@ -39,13 +48,21 @@ public class DataAccessmethods {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
-        PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
-        pst.setString(1, (String) positionJson.get("userName"));
-        result = pst.executeUpdate();
+        //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
+        
+       // result = pst.executeQuery();
+       PreparedStatement pst = con.prepareStatement("SELECT * FROM PLAYER " + "WHERE USERNAME LIKE ? AND PASSWORD LIKE ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+       pst.setString(1, (String) positionJson.get("userName"));
+       pst.setString(2, (String) positionJson.get("password"));
+       ResultSet rs = pst.executeQuery();
+        if(rs.next() ){
+            result=1;
+        }
 
         con.commit();
         pst.close();
         con.close();
+ 
         return result;
 
     }       

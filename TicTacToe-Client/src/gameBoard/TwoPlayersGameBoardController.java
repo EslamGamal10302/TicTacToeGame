@@ -101,11 +101,11 @@ public class TwoPlayersGameBoardController implements Initializable {
       public void choosePlayer(){
      if (move.equalsIgnoreCase("x")) {  
          storedMove=move;
-        image = new Image("/assets/xchar.png"); 
+        image = new Image("/assets/xchar (1).png"); 
         move = "o";
      }     else {
            storedMove=move;
-           image = new Image("/assets/ochar.png"); 
+           image = new Image("/assets/ochar (1).png"); 
            move = "x";        
            }
     }

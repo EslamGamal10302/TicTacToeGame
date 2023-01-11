@@ -5,7 +5,7 @@
  */
 package tictactoe.server;
 
-import gameHandler.RequestHandler;
+import gameHandler.PlayerHandler;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -38,24 +39,60 @@ public class TicTacToeServer extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         new Thread(() -> {
             try {
+           
                 serverSocket = new ServerSocket(5005);
-                Socket clientSocket = serverSocket.accept();
-                serverDataInput = new DataInputStream(clientSocket.getInputStream());
-                serverDataOutput = new PrintStream(clientSocket.getOutputStream());
-                BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
-               JSONObject positionJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
-               String name =(String) positionJson.get("userName");
-               String password =(String) positionJson.get("password");
-               System.out.println(name);
-               System.out.println(password);
-             // int x=DataAccessmethods.login(positionJson);
+         while (true){
+               Socket clientSocket = serverSocket.accept();
+               serverDataInput = new DataInputStream(clientSocket.getInputStream());
+               serverDataOutput = new PrintStream(clientSocket.getOutputStream());
+               BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
+               String client = clientBufferedReader.readLine();
+               System.out.println(client);
+               JSONObject positionJson= (JSONObject) new JSONParser().parse(client); 
+                
+                long type =(long) positionJson.get("type");
+               if (type ==1){
+                    /*String name_singUp =(String) positionJson.get("userName");
+                    String email_signUp =(String) positionJson.get("email");
+                    String password_signUp =(String) positionJson.get("password");
+                   
+                    System.out.println(name_singUp);
+                    System.out.println(email_signUp);
+                    System.out.println(password_signUp);*/
+                    int status=1;
+                    int x =DataAccessmethods.signUp(positionJson,status);
+                    System.out.println(x);
+                    serverDataOutput.println("success_signup"); 
+               }
+               else if (type==2){
+                   String name_login =(String) positionJson.get("userName");
+                   String password_login =(String) positionJson.get("password");
+                   System.out.println(name_login);
+                   System.out.println(password_login);
+                   int x =DataAccessmethods.login(positionJson);
+                   System.out.println(x);
+                   if (x==1){
+                       
+                      System.out.println("success"); 
+                      serverDataOutput.println("success_login"); 
+                   }
+                   else{
+                       System.out.println("fail login"); 
+                      serverDataOutput.println("fail_login"); 
+                   }
+               }
+               
+             //  int x=DataAccessmethods.login(positionJson);
              // to send the data to DB for login 
              //  DataAccessmethods.signUp(positionJson);
              //to send the data to DB to sign up 
-                serverDataOutput.println("recevied");
+                //serverDataOutput.println("recevied"); 
+            }
                 //new RequestHandler(clientSocket);
             }   catch (IOException | ParseException ex) {
              Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(TicTacToeServer.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             
