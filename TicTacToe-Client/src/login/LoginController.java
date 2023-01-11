@@ -111,6 +111,7 @@ public class LoginController implements Initializable {
                 } else {
                     Platform.runLater(() -> {
                         text_repeat.setText("Repeat again");
+
                         try {
                             ps.close();
                             dis.close();
