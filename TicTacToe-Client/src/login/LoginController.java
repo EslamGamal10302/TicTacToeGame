@@ -72,7 +72,7 @@ public class LoginController implements Initializable {
             //SocketClient mySocket=SocketClient.getInstant();
             dis = new DataInputStream(SocketClient.getInstant().getSocket().getInputStream());
             ps = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
-            stream =true;
+            stream = true;
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,14 +111,22 @@ public class LoginController implements Initializable {
                 } else {
                     Platform.runLater(() -> {
                         text_repeat.setText("Repeat again");
+                        try {
+                            ps.close();
+                            dis.close();
+                            // mySocket.close();
+                            SocketClient.getInstant().CloseSocket();
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     });
 
                 }
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            
-            
+            }
+
         }).start();
         //try {
         //   Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
@@ -139,23 +147,24 @@ public class LoginController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) {
-            if(stream){
-                try {
-                    ps.close();
-                    dis.close();
-                    SocketClient.getInstant().CloseSocket();
-                    //mySocket.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }} 
-                
-                  try {
-                            
-                            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
-                        } catch (Exception ex) {
-                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-            
+        if (stream) {
+            try {
+                ps.close();
+                dis.close();
+                SocketClient.getInstant().CloseSocket();
+                //mySocket.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        try {
+
+            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

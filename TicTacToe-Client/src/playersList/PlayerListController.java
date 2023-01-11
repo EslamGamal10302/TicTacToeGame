@@ -99,7 +99,7 @@ public class PlayerListController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        gameNotStarted=false;
+        gameNotStarted=true;
         playersObservableList =FXCollections.observableArrayList();
         playerList.getStylesheets().add(getClass().getResource("listViewcss.css").toString());
         playerList.setCellFactory((param) -> {
@@ -111,7 +111,9 @@ public class PlayerListController implements Initializable {
             while(gameNotStarted){
                 try {
                 playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
-                    int type = (int)playerJson.get("type");
+                    Long temp =(long)playerJson.get("type");
+                    int type = temp.intValue();
+                    System.out.println("the typ is"+type);
                   switch(type){
                     case 1:
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/challengeDialog/challengeDialogFXML.fxml"));
@@ -145,8 +147,20 @@ public class PlayerListController implements Initializable {
     private ArrayList<Player> decodePlayersJSONArray(JSONArray playersJSON) {
        ArrayList<Player> Players = new ArrayList<>();
         for (Object playerOpj : playersJSON) {
-            JSONObject  playerJSON = (JSONObject)playerOpj;
-            Player player = new Player((String)playerJSON.get("username"),(int) playerJSON.get("states"), (int) playerJSON.get("no_game"),(int) playerJSON.get("score"));
+            
+            JSONObject  playerJSON = (JSONObject)playerOpj;   
+            Long numOfgames =(Long)  playerJSON.get("no_game");
+            if(numOfgames == null){
+             numOfgames = new Long(0);
+            }
+            Long playerScore =(Long)  playerJSON.get("score");
+            if(playerScore == null){
+             playerScore = new Long(0);
+            }
+            Player player = new Player((String)playerJSON.get("playerName"),
+                                        ((Long) playerJSON.get("status")).intValue(),
+                                         numOfgames.intValue(),
+                                         playerScore.intValue());
             Players.add(player);
         }
        return Players;

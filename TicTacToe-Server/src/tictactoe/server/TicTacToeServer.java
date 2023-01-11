@@ -73,8 +73,10 @@ public class TicTacToeServer extends Application {
                    System.out.println(x);
                    if (x==1){
                        
+                       
                       System.out.println("success"); 
                       serverDataOutput.println("success_login"); 
+                      new PlayerHandler(clientSocket, name_login);
                    }
                    else{
                        System.out.println("fail login"); 
