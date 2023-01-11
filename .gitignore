@@ -3,3 +3,14 @@
 
 
 /TicTacToe-Server/build/
+TicTacToe-Client/dist/TicTacToe-Client.html
+TicTacToe-Client/dist/TicTacToe-Client.html
+TicTacToe-Client/dist/TicTacToe-Client.jnlp
+TicTacToe-Client/dist/TicTacToe-Client.jnlp
+*.properties
+*.properties
+*.html
+TicTacToe-Client/dist/TicTacToe-Client.html
+TicTacToe-Server/build/classes/tictactoe/server/DataAccessmethods.class
+*.class
+*.jar

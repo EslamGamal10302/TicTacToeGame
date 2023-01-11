@@ -62,6 +62,7 @@ public class TicTacToeServer extends Application {
                     int status=1;
                     int x =DataAccessmethods.signUp(positionJson,status);
                     System.out.println(x);
+                    serverDataOutput.println("success_signup"); 
                }
                else if (type==2){
                    String name_login =(String) positionJson.get("userName");

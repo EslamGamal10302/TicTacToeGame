@@ -40,13 +40,9 @@ public class LoginController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    
-   
     @FXML
     private TextField userName;
 
-   
     @FXML
     private PasswordField password;
 
@@ -55,98 +51,32 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button signUp;
-     
+
+    @FXML
+    private Button back;
+
     @FXML
     private Text text_repeat;
-    Socket mySocket;
-    DataInputStream dis ;
+    //Socket mySocket;
+    DataInputStream dis;
     PrintStream ps;
-      @FXML
+    Boolean stream = false;
+
+    @FXML
     void loginButtonAction(ActionEvent event) {
         String name = userName.getText();
         String pass = password.getText();
         long type = 2;
-        //Socket mySocket = SocketClient.getInstance() ;
-        //SocketClient login = new SocketClient();
-         try {
-            // TODO
-            mySocket = new Socket("127.0.0.1", 5005);
-            dis = new DataInputStream(mySocket.getInputStream ());
-            ps = new PrintStream(mySocket.getOutputStream ());
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JSONObject obj = new JSONObject();
-        obj.put("userName", name);
-        obj.put("password", pass);
-        obj.put("type", type);
-       // String json=("{\"userName\":"+name+"},{\"password\":"+pass+"}");
-        //System.out.println(json);
-        ps.println(obj);
-        System.out.println("1");
-        new Thread(() -> {  
         try {
-        String replyMsg = dis.readLine();
-        System.out.println(replyMsg);
-        if (replyMsg.equals("success_login")){
-         
-            Platform.runLater(() ->{
-            try {
-               text_repeat.setText(""); 
-              Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
-             } 
-            catch (Exception ex) {
-              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-               }
-            });
-        }
-        else{
-           Platform.runLater(() ->{
-               text_repeat.setText("Repeat again"); 
-            });
-            
-           
-        }
+            //SocketClient.getInstant().getSocket();
+            //SocketClient mySocket=SocketClient.getInstant();
+            dis = new DataInputStream(SocketClient.getInstant().getSocket().getInputStream());
+            ps = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+            stream =true;
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         finally
-    {
-     try
-    {
-    ps.close();
-    dis.close();
-    mySocket.close();
-    }
-    catch(Exception ex)
-    {
-    ex.printStackTrace();
-    }
-    } }).start();
-        //try {
-         //   Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
-       // } catch (Exception ex) {
-      //      Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-    //    } 
-    }
 
-    @FXML
-    void signUpButtonAction(ActionEvent event) {
-       try {
-            Utility.changeTOScene(getClass(), event, "/login/signup.fxml");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-
-    }
-    
-   
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-                
         /*try {
             // TODO
             mySocket = new Socket("127.0.0.1", 5005);
@@ -155,6 +85,90 @@ public class LoginController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-    }    
-    
+        JSONObject obj = new JSONObject();
+        obj.put("userName", name);
+        obj.put("password", pass);
+        obj.put("type", type);
+        // String json=("{\"userName\":"+name+"},{\"password\":"+pass+"}");
+        //System.out.println(json);
+        ps.println(obj);
+        System.out.println("1");
+        new Thread(() -> {
+            try {
+                System.out.println("waiting for server response");
+                String replyMsg = dis.readLine();
+                System.out.println(replyMsg);
+                if (replyMsg.equals("success_login")) {
+
+                    Platform.runLater(() -> {
+                        try {
+                            text_repeat.setText("");
+                            Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
+                        } catch (Exception ex) {
+                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+                } else {
+                    Platform.runLater(() -> {
+                        text_repeat.setText("Repeat again");
+                    });
+
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            
+            
+        }).start();
+        //try {
+        //   Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
+        // } catch (Exception ex) {
+        //      Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        //    } 
+    }
+
+    @FXML
+    void signUpButtonAction(ActionEvent event) {
+        try {
+            Utility.changeTOScene(getClass(), event, "/login/signup.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+    void backAction(ActionEvent event) {
+            if(stream){
+                try {
+                    ps.close();
+                    dis.close();
+                    SocketClient.getInstant().CloseSocket();
+                    //mySocket.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }} 
+                
+                  try {
+                            
+                            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+                        } catch (Exception ex) {
+                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+            
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        /*try {
+            // TODO
+            mySocket = new Socket("127.0.0.1", 5005);
+            dis = new DataInputStream(mySocket.getInputStream ());
+            ps = new PrintStream(mySocket.getOutputStream ());
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+    }
+
 }

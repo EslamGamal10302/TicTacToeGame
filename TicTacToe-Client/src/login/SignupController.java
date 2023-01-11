@@ -56,8 +56,30 @@ public class SignupController implements Initializable {
     Socket mySocket;
     DataInputStream dis;
     PrintStream ps;
+    
+     @FXML
+    private Button exit;
 
+     
+     @FXML
+    void exitAction(ActionEvent event) {
+                
+               
+                   
+                    
+                    try {
+                            
+                            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+                        } catch (Exception ex) {
+                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                
+    }  
+     
+
+     
     @FXML
+                   
     void signUpButtonAction(ActionEvent event) {
         String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
@@ -80,13 +102,21 @@ public class SignupController implements Initializable {
                 signUp_repeat.setText("Please check your password");
            
         } else {
-            try {
+            /*try {
                 // TODO
                 mySocket = new Socket("127.0.0.1", 5005);
                 dis = new DataInputStream(mySocket.getInputStream());
                 ps = new PrintStream(mySocket.getOutputStream());
             } catch (IOException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+            try {
+            //SocketClient.getInstant().getSocket();
+            dis = new DataInputStream(SocketClient.getInstant().getSocket().getInputStream ());
+             ps = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream ());
+           
+            } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             long type = 1;
@@ -99,6 +129,15 @@ public class SignupController implements Initializable {
             //System.out.println(json);
             ps.println(obj);
             //System.out.println("9");
+            /*try {
+                       ps.close();
+                       dis.close();
+                       // mySocket.close();
+                      SocketClient.getInstant().CloseSocket();
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                   }*/
             new Thread(() -> {
                 try {
                     String replyMsg = dis.readLine();
@@ -106,23 +145,31 @@ public class SignupController implements Initializable {
                     System.out.println("9");
                 } catch (IOException ex) {
                     Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    try {
+                }
+                
+         
+             try {
                        ps.close();
-                        dis.close();
-                        mySocket.close();
+                       dis.close();
+                       // mySocket.close();
+                      SocketClient.getInstant().CloseSocket();
+
                     } catch (Exception ex) {
                         ex.printStackTrace();
-                    }
-                }
+                   }
+               
+                
             }).start();
             try {
-                Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
+                Utility.changeTOScene(getClass(), event, "/login/login.fxml");
             } catch (Exception ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
+        
+        
+        
         /*new Thread(() -> {  
         try {
         String replyMsg = dis.readLine();

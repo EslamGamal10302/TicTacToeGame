@@ -22,7 +22,7 @@ public class DataAccessmethods {
        public static int signUp(JSONObject positionJson ,int status) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         //PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER VALUES (? , ?,? )");
         PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
         
@@ -47,7 +47,7 @@ public class DataAccessmethods {
      public static int login(JSONObject positionJson) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
         
        // result = pst.executeQuery();
