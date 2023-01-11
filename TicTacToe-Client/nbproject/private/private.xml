@@ -54,8 +54,9 @@
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/OnlineGame.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/Login@1x.png</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/moveJsonMaker.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/challengeDialog/ChallengeDialogController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/PlayerListController.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellController.java</file>
@@ -63,8 +64,7 @@
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/PlayerMove.java</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellFXML.fxml</file>
             <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/assets/ochar%20(1).png</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/challengeDialog/challengeDialogFXML.fxml</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SocketClient.java</file>
         </group>
     </open-files>
 </project-private>
