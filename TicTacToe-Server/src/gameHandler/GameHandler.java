@@ -12,11 +12,11 @@ import org.json.simple.JSONObject;
  * @author 20106
  */
 public class GameHandler {
-    RequestHandler palyer1;
-    RequestHandler palyer2;
+    private PlayerHandler player1;
+    private PlayerHandler player2;
     private String [] playedMoves;
     private int currentTurn;
-     private JSONObject moveJson;
+    private JSONObject moveJson;
 
     public GameHandler() {
         moveJson = new JSONObject();
@@ -24,12 +24,12 @@ public class GameHandler {
         currentTurn=1;
     }
 
-    public void setPalyer1(RequestHandler palyer1) {
-        this.palyer1 = palyer1;
+    public void setPlayer1(PlayerHandler player1) {
+        this.player1 = player1;
     }
 
-    public void setPalyer2(RequestHandler palyer2) {
-        this.palyer2 = palyer2;
+    public void setPlayer2(PlayerHandler player2) {
+        this.player2 = player2;
     }
     public String getJosnMassige(int position) {
         moveJson.put("position", position);
@@ -90,5 +90,10 @@ public class GameHandler {
     private void setWinposition(int position1, int position2) {
        moveJson.put("winPosition1", position1);
        moveJson.put("winPosition2", position2);
+    }
+
+    void sendMassigeToPlayer(String turnMassige) {
+        player1.sendTurn(turnMassige);
+        player2.sendTurn(turnMassige);
     }
 }

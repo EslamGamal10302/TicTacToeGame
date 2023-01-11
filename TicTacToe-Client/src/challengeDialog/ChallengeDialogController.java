@@ -19,9 +19,14 @@ public class ChallengeDialogController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private String userName;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    public void setUserName(String userName) {
+       this.userName = userName;
+    }
     
 }

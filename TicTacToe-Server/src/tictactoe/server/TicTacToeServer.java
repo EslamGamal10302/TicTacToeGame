@@ -5,7 +5,7 @@
  */
 package tictactoe.server;
 
-import gameHandler.RequestHandler;
+import gameHandler.PlayerHandler;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;

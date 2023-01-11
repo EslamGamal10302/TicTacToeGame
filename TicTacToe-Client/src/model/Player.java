@@ -11,39 +11,30 @@ package model;
  */
 public class Player {
     private String username;
-    private String password;
-    private String email;
     private int no_game;
     private int score;
-    static final int AVAILBLE =1;
-    static final int INGAME =2;
-    static final int OFFLINE =3;
+    private int states;
+    public static final int AVAILBLE =1;
+    public static final int INGAME =2;
+    public static final int OFFLINE =3;
 
     
     public Player(){
         
     }   
     
-    public Player(String username,String password,String email,int no_game,int score){
-        this.email = email;
+    public Player(String username,int states,int no_game,int score){
+        
         this.username = username;
+        this.states=states;
         this.no_game = no_game;
         this.score = score;
-        this.password = password;
+        
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setNo_game(int no_game) {
         this.no_game = no_game;
     }
@@ -52,18 +43,12 @@ public class Player {
         this.score = score;
     }
 
+    public void setStates(int states) {
+        this.states = states;
+    }
     public String getUsername() {
         return username;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public int getNo_game() {
         return no_game;
     }
@@ -72,18 +57,8 @@ public class Player {
         return score;
     }
 
-    public static int getAVAILBLE() {
-        return AVAILBLE;
-    }
-
-    public static int getINGAME() {
-        return INGAME;
-    }
-
-    public static int getOFFLINE() {
-        return OFFLINE;
+    public int getStates() {
+        return states;
     }
     
-    
-    
-}
+    }
