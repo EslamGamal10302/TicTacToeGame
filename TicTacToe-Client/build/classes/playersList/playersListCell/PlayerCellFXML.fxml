@@ -13,7 +13,7 @@
               <Label  fx:id="playerName" layoutX="10.0" prefHeight="45.0" prefWidth="129.0" text="Label" textFill="WHITE" />
               <Label  fx:id="playerStat" layoutX="260.0" prefHeight="45.0" prefWidth="129.0" text="Label" textFill="WHITE" />
               <Label fx:id="playerScore" layoutX="130.0" prefHeight="45.0" prefWidth="129.0" text="Label" textFill="WHITE" />
-              <Button fx:id="myButton" layoutX="390.0" layoutY="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color:rgb(255,255,102);" text="Challenge" />
+              <Button fx:id="challengeButton" layoutX="390.0" layoutY="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="95.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color:rgb(255,255,102);" text="Challenge" />
            </children>
         </Pane>
 
