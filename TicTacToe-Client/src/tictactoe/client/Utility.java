@@ -17,25 +17,19 @@ import javafx.stage.Stage;
  * @author Dell
  */
 public class Utility {
-    
-            //Utility.changeTOScene(getClass(), event, "tryscenetwo.fxml");
-    public static void changeTOScene(Class aClass,Event aEvent , String sceneFile ) throws Exception{
+
+    //Utility.changeTOScene(getClass(), event, "tryscenetwo.fxml");
+    public static void changeTOScene(Class aClass, Event aEvent, String sceneFile) throws Exception {
         Parent root = FXMLLoader.load(aClass.getResource(sceneFile));
-        System.out.println("1");
+
         Scene scene = new Scene(root);
-        System.out.println("2");
-        Stage stage =(Stage) ((Node) aEvent.getSource()).getScene().getWindow();
-        System.out.println("3");
+
+        Stage stage = (Stage) ((Node) aEvent.getSource()).getScene().getWindow();
+
         stage.setScene(scene);
-        System.out.println("4");
+
         stage.show();
-        System.out.println("5");
-   }
-    
-    
-    
-    
-    
-    
-    
+
+    }
+
 }

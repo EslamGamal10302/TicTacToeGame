@@ -36,6 +36,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Text>
+                  <Button fx:id="exit" layoutX="352.0" layoutY="297.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: rgb(255,255,102);" text="Home" />
                </children>
             </Pane>
          </children>

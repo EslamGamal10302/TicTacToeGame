@@ -41,6 +41,7 @@ public class SocketClient {
     public Socket getSocket() throws IOException {
         if(!isInitialized){
             mySocket = new Socket("127.0.0.1", 5005);
+            System.out.println( "new Socket" );
             isInitialized = true;
           
         }
@@ -51,6 +52,7 @@ public class SocketClient {
        
             mySocket.close();
             isInitialized = false;
+            System.out.println( "Socket is close" );
               
     }
     
