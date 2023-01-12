@@ -7,7 +7,11 @@ package challengeDialog;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -19,14 +23,32 @@ public class ChallengeDialogController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private String userName;
+    @FXML
+    private Button acceptButton;
+
+    @FXML
+    private Button refuseButton;
+
+    @FXML
+    private Label playerName;
+
+    @FXML
+    void acceptPlaying(ActionEvent event) {
+
+    }
+
+    @FXML
+    void refusePlaying(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     public void setUserName(String userName) {
-       this.userName = userName;
+        playerName.setText(userName);
     }
-    
+
 }

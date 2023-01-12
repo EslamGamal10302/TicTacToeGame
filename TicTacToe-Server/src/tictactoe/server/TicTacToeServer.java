@@ -60,9 +60,17 @@ public class TicTacToeServer extends Application {
                     System.out.println(email_signUp);
                     System.out.println(password_signUp);*/
                     int status=1;
-                    int x =DataAccessmethods.signUp(positionJson,status);
-                    System.out.println(x);
-                    serverDataOutput.println("success_signup"); 
+                    int checkUnique=DataAccessmethods.checkUnique(positionJson);
+                    if (checkUnique==0){
+                          int x =DataAccessmethods.signUp(positionJson,status);
+                          System.out.println(x);
+                          serverDataOutput.println("success_signup"); 
+                          System.out.println("success_signup");
+                    }
+                    else{
+                        serverDataOutput.println("username_notAvailable"); 
+                        System.out.println("username_notAvailable");
+                    }
                }
                else if (type==2){
                    String name_login =(String) positionJson.get("userName");
@@ -72,6 +80,7 @@ public class TicTacToeServer extends Application {
                    int x =DataAccessmethods.login(positionJson);
                    System.out.println(x);
                    if (x==1){
+                       
                        
                       System.out.println("success"); 
                       serverDataOutput.println("success_login"); 

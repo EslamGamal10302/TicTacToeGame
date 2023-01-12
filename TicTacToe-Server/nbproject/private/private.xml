@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/gameHandler/JsonDecoder.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/Screen%201@1x%20(1).png</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/DataAccessmethods.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/dataAccesslayer/GamesDAL.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/TicTacToeServer.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/dataAccesslayer/PlayersDAL.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/FXMLDocumentController.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/dataAccesslayer/Game.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/gameHandler/GameHandler.java</file>
-            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Server/src/gameHandler/PlayerHandler.java</file>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Server/src/gameHandler/PlayerHandler.java</file>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Server/src/gameHandler/GameHandler.java</file>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/TicTacToeServer.java</file>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Server/src/tictactoe/server/DataAccessmethods.java</file>
         </group>
     </open-files>
 </project-private>
