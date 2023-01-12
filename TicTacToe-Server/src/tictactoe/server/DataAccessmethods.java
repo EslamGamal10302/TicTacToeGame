@@ -69,7 +69,7 @@ public class DataAccessmethods {
  
         return result;
 
-<<<<<<< HEAD
+
     }     
        public static int checkUnique(JSONObject positionJson) throws SQLException {
         int check = 0;                
@@ -92,7 +92,7 @@ public class DataAccessmethods {
  
         return check;
 
-=======
+
     }   
      
      public static ArrayList<Player> getPlayersFromDatabase() throws SQLException{
@@ -120,7 +120,7 @@ public class DataAccessmethods {
                 rs.close();
                 con.close();
                 return players;
->>>>>>> fcd66400e8748806c0bcf1a76bd32f86a2e967bd
+
     } 
        
        
