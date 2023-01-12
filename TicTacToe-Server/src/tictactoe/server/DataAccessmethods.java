@@ -5,11 +5,15 @@
  */
 package tictactoe.server;
 
+import dataAccesslayer.Player;
+import gameHandler.PlayerHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
 import org.json.simple.JSONObject;
 
 /**
@@ -22,7 +26,7 @@ public class DataAccessmethods {
        public static int signUp(JSONObject positionJson ,int status) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         //PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER VALUES (? , ?,? )");
         PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
         
@@ -47,7 +51,7 @@ public class DataAccessmethods {
      public static int login(JSONObject positionJson) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
         
        // result = pst.executeQuery();
@@ -65,6 +69,7 @@ public class DataAccessmethods {
  
         return result;
 
+<<<<<<< HEAD
     }     
        public static int checkUnique(JSONObject positionJson) throws SQLException {
         int check = 0;                
@@ -87,6 +92,35 @@ public class DataAccessmethods {
  
         return check;
 
+=======
+    }   
+     
+     public static ArrayList<Player> getPlayersFromDatabase() throws SQLException{
+       
+                DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM PLAYER " , ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+                ArrayList<Player> players = new ArrayList<>()  ;
+                ResultSet rs = ps.executeQuery();
+                rs.first();
+                int i =0;
+                while(rs.next())
+                {
+                  Player myPlayer = new Player();
+                  myPlayer.setPlayerName(rs.getString(1));
+                  myPlayer.setNo_games(rs.getInt(4));
+                  myPlayer.setPlayerScore(rs.getInt(5));
+                  myPlayer.setPlayerStat(rs.getInt(6));
+                  players.add(myPlayer);
+          
+                  i++;    
+                }
+                ps.close();
+                rs.close();
+                con.close();
+                return players;
+>>>>>>> fcd66400e8748806c0bcf1a76bd32f86a2e967bd
     } 
        
        
