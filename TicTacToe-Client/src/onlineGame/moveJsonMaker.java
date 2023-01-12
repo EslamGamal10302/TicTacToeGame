@@ -13,11 +13,15 @@ import org.json.simple.parser.ParseException;
  */
 public class moveJsonMaker {
     public static String createMoveJson(int position){
-    
-        return new String("{\"position\":"+position+"}");
+        JSONObject positionJson= new JSONObject();
+        positionJson.put("position", position);
+        positionJson.put("type", 4);
+        return positionJson.toString();
     }
      public static PlayerMove getMove(String jsonString) throws ParseException{
+         System.out.println("jsonString");
         JSONObject moveJson= (JSONObject) new JSONParser().parse(jsonString);
+        
         long tempPosition = ((long)moveJson.get("position"));
         long winPosition1 = ((long)moveJson.get("winPosition1"));
         long winPosition2 = ((long)moveJson.get("winPosition2"));
@@ -26,6 +30,6 @@ public class moveJsonMaker {
         
     
         return new PlayerMove(tempPosition, winPosition1,
-               winPosition2, playerTurn, (boolean)moveJson.get("win"));
+               winPosition2, playerTurn,( (Long)moveJson.get("gameStat")).intValue());
     }
 }

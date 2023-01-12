@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javax.swing.text.Position;
+import login.SocketClient;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -32,7 +33,7 @@ public class OnlineGame {
 
     public OnlineGame(OnlineGameBoardController gameController) throws IOException {
         this.gameController = gameController;
-        serverSocket = new Socket("127.0.0.1", 5005);
+        serverSocket = SocketClient.getInstant().getSocket();
         clientInputStream = new DataInputStream(serverSocket.getInputStream ());
         clientOutputStream = new PrintStream(serverSocket.getOutputStream ());   
         getMoveFromServer();
@@ -44,22 +45,39 @@ public class OnlineGame {
 
     private void getMoveFromServer() {
         new Thread(() -> {
-            while (true) {                
+            while (true) {   
+                System.out.println("new loop");
                 BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(clientInputStream));
                 try {
-                    move= moveJsonMaker.getMove(clientBufferedReader.readLine());
+                    String str = clientBufferedReader.readLine();
+                    System.out.println(str);
+                    move= moveJsonMaker.getMove(str);
+                    
+                     System.out.println(move);
                 } catch (IOException ex) {
                     
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if(move.isWin()){
+                if(move.getGameStat()==gameController.getPlayerTurn()){
                     Platform.runLater(() -> {
+                        
                         gameController.drawLine(move.getWinPosition1(),move.getWinPosition2());
+                        gameController.didWin();
                     });
-                }else{
+                }else if(move.getGameStat()==3){
+                    Platform.runLater(() -> {
+                        gameController.didTie();
+                    });
+                }else if(move.getGameStat()==0){
                    gameController.changeTurn(move.getPlayerTurn()); 
+                }else{
+                    Platform.runLater(() -> {
+                        
+                        gameController.drawLine(move.getWinPosition1(),move.getWinPosition2());
+                        gameController.didLose();
+                    });
                 }
                 Platform.runLater(() -> {
                         gameController.setImage(move.getPosition());

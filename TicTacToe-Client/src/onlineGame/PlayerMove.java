@@ -14,15 +14,18 @@ public class PlayerMove {
     private long winPosition1 ;
     private long winPosition2 ;
     private long playerTurn ;
-    private boolean win;
+    private int gameStat;
+    public static final int Player1Win = 1;
+    public static final int Player2Win = 2;
+    public static final int tie = 2;
     
     
-    public PlayerMove(long position, long winPosition1, long winPosition2, long playerTurn, boolean win) {
+    public PlayerMove(long position, long winPosition1, long winPosition2, long playerTurn, int gameStat) {
         this.position = position;
         this.winPosition1 = winPosition1;
         this.winPosition2 = winPosition2;
         this.playerTurn = playerTurn;
-        this.win = win;
+        this.gameStat = gameStat;
     }
 
     public long getPosition() {
@@ -41,9 +44,12 @@ public class PlayerMove {
         return playerTurn;
     }
 
-    public boolean isWin() {
-        return win;
+    public int getGameStat() {
+        return gameStat;
     }
+    
+
+    
 
     public void setPosition(int position) {
         this.position = position;
@@ -61,9 +67,12 @@ public class PlayerMove {
         this.playerTurn = playerTurn;
     }
 
-    public void setWin(boolean win) {
-        this.win = win;
+    public void setGameStat(int gameStat) {
+        this.gameStat = gameStat;
     }
+    
+
+    
    
 
     

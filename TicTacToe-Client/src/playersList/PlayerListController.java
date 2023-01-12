@@ -116,29 +116,40 @@ public class PlayerListController implements Initializable {
             while(gameNotStarted){
                 try {
                 playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
+                    System.out.println(playerJson.toString());
                     Long temp =(long)playerJson.get("type");
                     int type = temp.intValue();
-                    System.out.println("the typ is"+type);
+                    
                   switch(type){
                     case 1:
+                        gameNotStarted=false;
                         showDialog(playerJson);                     
                         break;
                         
                     case 2:
                         gameNotStarted =false;
                         watingAlert.close();
-                        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("OnlineGameBoard.fxml")));
-                        OnlineGameBoardController gameBoard =fxmlLoader.<OnlineGameBoardController>getController();
-                        Stage stage =(Stage) recordsBut.getScene().getWindow();
-                        gameBoard.setTurn(1);
+                        Platform.runLater(() -> {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/gameBoard/OnlineGameBoard.fxml")));
+                        
                         Parent root = fxmlLoader.load();
                         Scene scene = new Scene(root);
+                        Stage stage =(Stage) recordsBut.getScene().getWindow();
+                        OnlineGameBoardController gameBoard =fxmlLoader.<OnlineGameBoardController>getController();
+                        gameBoard.setTurn(1);
+                        
                         stage.setScene(scene);
                         stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                        });
                         break;
 
                     case 4:
                         JSONArray  playersJSON = (JSONArray) playerJson.get("player");
+                        System.out.println(playerJson.toJSONString());
                         playersObservableList.clear();
                         playersObservableList.addAll(decodePlayersJSONArray(playersJSON));
                         break;
@@ -154,16 +165,27 @@ public class PlayerListController implements Initializable {
         }).start();  
     }   
 
-    private void showDialog(JSONObject playerJson) throws IOException {
+    private void showDialog(JSONObject playerJson) {
+        Platform.runLater(() -> {
+        try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/challengeDialog/challengeDialogFXML.fxml"));
-        Parent parent = fxmlLoader.load();
+        Parent parent;
+            
+                parent = fxmlLoader.load();
+           
         ChallengeDialogController dialogController = fxmlLoader.<ChallengeDialogController>getController();
         dialogController.setUserName((String)playerJson.get("userName"));
         Scene scene = new Scene(parent, 300, 200);
         Stage stage = new Stage();
+        Stage mainStage =(Stage) recordsBut.getScene().getWindow();
+        dialogController.setMainStage(mainStage);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+         } catch (IOException ex) {
+                Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     private ArrayList<Player> decodePlayersJSONArray(JSONArray playersJSON) {
