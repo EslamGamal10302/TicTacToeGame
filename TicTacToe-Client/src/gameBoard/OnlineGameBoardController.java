@@ -128,7 +128,7 @@ public class OnlineGameBoardController implements Initializable {
     }
     private void sendMove(int position,MouseEvent event){
     
-        if(!playerMoved /*&& playerTurn==currentTurn*/ && ((ImageView)event.getSource()).getImage()==null ){
+        if(!playerMoved && playerTurn==currentTurn && ((ImageView)event.getSource()).getImage()==null ){
            onlineGameHandler.sendMoveToServer(position);
             
            playerMoved=true;
@@ -233,6 +233,9 @@ public class OnlineGameBoardController implements Initializable {
         line.setStyle("-fx-stroke: red;");
         line.setStrokeWidth(10);
         anchor.getChildren().add(line);
+    }
+    public void setTurn(int playerTurn){
+        this.playerTurn=playerTurn;
     }
     
 }

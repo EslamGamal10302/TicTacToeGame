@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -41,8 +42,11 @@ public class PlayerCellController extends ListCell<Player> {
     private Label playerStat;
     @FXML
     private Button challengeButton;
+    
+    Alert watingAlert;
 
-    public PlayerCellController() {
+    public PlayerCellController(Alert watingAlert) {
+        this.watingAlert=watingAlert;
         loadFXML();
     }
 
@@ -93,6 +97,8 @@ public class PlayerCellController extends ListCell<Player> {
                         challengeJson.put("type", 1);
                         challengeJson.put("userName", player.getUsername());
                         serverDataOutput.println(challengeJson.toString());
+                         watingAlert =new Alert(Alert.AlertType.INFORMATION);
+                        
                 } catch (IOException ex) {
                     Logger.getLogger(PlayerCellController.class.getName()).log(Level.SEVERE, null, ex);
                 }
