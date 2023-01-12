@@ -65,7 +65,29 @@ public class DataAccessmethods {
  
         return result;
 
-    }       
+    }     
+       public static int checkUnique(JSONObject positionJson) throws SQLException {
+        int check = 0;                
+        DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
+        
+       // result = pst.executeQuery();
+       PreparedStatement pst = con.prepareStatement("SELECT * FROM PLAYER " + "WHERE USERNAME LIKE ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+       pst.setString(1, (String) positionJson.get("userName"));
+      
+       ResultSet rs = pst.executeQuery();
+        if(rs.next() ){
+            check=1;
+        }
+
+        con.commit();
+        pst.close();
+        con.close();
+ 
+        return check;
+
+    } 
        
        
        
