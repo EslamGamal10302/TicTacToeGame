@@ -56,30 +56,25 @@ public class SignupController implements Initializable {
     Socket mySocket;
     DataInputStream dis;
     PrintStream ps;
-    
-     @FXML
+    private boolean sign = false;
+
+    @FXML
     private Button exit;
 
-     
-     @FXML
-    void exitAction(ActionEvent event) {
-                
-               
-                   
-                    
-                    try {
-                            
-                            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
-                        } catch (Exception ex) {
-                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                
-    }  
-     
-
-     
     @FXML
-                   
+    void exitAction(ActionEvent event) {
+
+        try {
+
+            Utility.changeTOScene(getClass(), event, "/welcome/home.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+
     void signUpButtonAction(ActionEvent event) {
         String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
@@ -90,17 +85,17 @@ public class SignupController implements Initializable {
         String passConfirm = signUpConfirmPassword.getText().trim();
         if (name.isEmpty() || Email.isEmpty()
                 || pass.isEmpty() || passConfirm.isEmpty()) {
-            
-                signUp_repeat.setText("Empty Fields is Required");
-           
+
+            signUp_repeat.setText("Empty Fields is Required");
+
         } else if (!matcher.matches()) {
-            
-                signUp_repeat.setText("Please enter a valid mail");
-           
+
+            signUp_repeat.setText("Please enter a valid mail");
+
         } else if (!signUpPassword.getText().equals(signUpConfirmPassword.getText())) {
-            
-                signUp_repeat.setText("Please check your password");
-           
+
+            signUp_repeat.setText("Please check your password");
+
         } else {
             /*try {
                 // TODO
@@ -111,12 +106,12 @@ public class SignupController implements Initializable {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }*/
             try {
-            //SocketClient.getInstant().getSocket();
-            dis = new DataInputStream(SocketClient.getInstant().getSocket().getInputStream ());
-             ps = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream ());
-           
+                //SocketClient.getInstant().getSocket();
+                dis = new DataInputStream(SocketClient.getInstant().getSocket().getInputStream());
+                ps = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+
             } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             long type = 1;
@@ -142,34 +137,57 @@ public class SignupController implements Initializable {
                 try {
                     String replyMsg = dis.readLine();
                     System.out.println(replyMsg);
-                    System.out.println("9");
+                    if (replyMsg.equals("username_notAvailable")) {
+                        try {
+                            signUp_repeat.setText("Username_notAvailable");
+                            ps.close();
+                            dis.close();
+                            // mySocket.close();
+                            SocketClient.getInstant().CloseSocket();
+                            sign = false;
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    } else if (replyMsg.equals("success_signup")) {
+                        try {
+                            //  sign = true;
+                            ps.close();
+                            dis.close();
+                            // mySocket.close();
+                            SocketClient.getInstant().CloseSocket();
+                            sign = true;
+
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+
+                    }
+                    if (sign == true) {
+                        try {
+                            Utility.changeTOScene(getClass(), event, "/login/login.fxml");
+                        } catch (Exception ex) {
+                            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-         
-             try {
-                       ps.close();
-                       dis.close();
-                       // mySocket.close();
-                      SocketClient.getInstant().CloseSocket();
 
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                   }
-               
-                
+
+                /*try {
+                    ps.close();
+                    dis.close();
+                    // mySocket.close();
+                    SocketClient.getInstant().CloseSocket();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }*/
             }).start();
-            try {
-                Utility.changeTOScene(getClass(), event, "/login/login.fxml");
-            } catch (Exception ex) {
-                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         }
-        
-        
-        
-        
+
         /*new Thread(() -> {  
         try {
         String replyMsg = dis.readLine();

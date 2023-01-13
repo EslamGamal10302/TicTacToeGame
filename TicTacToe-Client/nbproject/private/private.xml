@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/record.json</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/welcome/WinController.java</file>
@@ -12,6 +13,50 @@
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayersData.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/welcome/ResultVsComputerController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/assets/ReplayBoardController.java</file>
+=======
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/OnlineGame.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/Login@1x.png</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/moveJsonMaker.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/challengeDialog/ChallengeDialogController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/Utility.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/PlayerListController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/PlayerMove.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellFXML.fxml</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SocketClient.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
+        </group>
+        <group>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/welcome/HomeController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/OnlineGame.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/Login@1x.png</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/moveJsonMaker.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/challengeDialog/ChallengeDialogController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/Utility.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/PlayerListController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/onlineGame/PlayerMove.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellFXML.fxml</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
+            <file>file:/D:/iti%20corces/Java_Project/TicTacToeGame/TicTacToe-Client/src/login/SocketClient.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/menna/OneDrive/Desktop/tic%20project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
+>>>>>>> bf2831d846f5acd1614dfa2806ac3ec4fe2e371c
         </group>
     </open-files>
 </project-private>

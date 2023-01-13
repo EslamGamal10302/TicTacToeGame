@@ -127,10 +127,10 @@ public class OnlineGameBoardController implements Initializable {
         sendMove(2, event);
     }
     private void sendMove(int position,MouseEvent event){
-    
-        if(!playerMoved /*&& playerTurn==currentTurn*/ && ((ImageView)event.getSource()).getImage()==null ){
+        System.out.println(playerTurn+" , "+currentTurn);
+        if(!playerMoved && playerTurn==currentTurn && ((ImageView)event.getSource()).getImage()==null ){
            onlineGameHandler.sendMoveToServer(position);
-            
+            System.out.println(playerTurn+" , "+currentTurn+" , "+position);
            playerMoved=true;
         }
         
@@ -186,7 +186,6 @@ public class OnlineGameBoardController implements Initializable {
             Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
         playerMoved = false;
-        playerTurn = 1;
        
         currentTurn=1;
         currentImageUrl="/assets/xchar.png"; 
@@ -233,6 +232,18 @@ public class OnlineGameBoardController implements Initializable {
         line.setStyle("-fx-stroke: red;");
         line.setStrokeWidth(10);
         anchor.getChildren().add(line);
+    }
+    public void setTurn(int playerTurn){
+        this.playerTurn=playerTurn;
+    }
+
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
+    public void didWin(){}
+    public void didLose(){}
+    public void didTie(){
+        System.out.println("gameBoard.OnlineGameBoardController.didTie()");
     }
     
 }
