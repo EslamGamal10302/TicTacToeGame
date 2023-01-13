@@ -2,7 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
         <group>
             <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/login/SocketClient.java</file>
             <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
@@ -19,6 +18,10 @@
             <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/login/SignupController.java</file>
             <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/Utility.java</file>
             <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/gameBoard/BoardController.java</file>
+        </group>
+        <group>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/challengeDialog/ChallengeDialogController.java</file>
+            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
         </group>
     </open-files>
 </project-private>
