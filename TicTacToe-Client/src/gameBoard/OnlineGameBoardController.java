@@ -13,14 +13,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 import onlineGame.OnlineGame;
+import tictactoe.client.Utility;
 
 /**
  * FXML Controller class
@@ -33,7 +38,9 @@ public class OnlineGameBoardController implements Initializable {
     private int currentTurn;
     private boolean playerMoved;
     private String currentImageUrl;
- 
+    private static int win;
+    
+    
     @FXML
     private AnchorPane anchor;
     @FXML
@@ -240,10 +247,57 @@ public class OnlineGameBoardController implements Initializable {
     public int getPlayerTurn() {
         return playerTurn;
     }
-    public void didWin(){}
-    public void didLose(){}
-    public void didTie(){
-        System.out.println("gameBoard.OnlineGameBoardController.didTie()");
+    public void didWin(){
+        try {
+            win = 1;
+            Parent root = FXMLLoader.load(getClass().getResource("/assets/OnlineResult.fxml"));
+            
+            Scene scene = new Scene(root);
+            
+            Stage stage =(Stage) position_1.getScene().getWindow();
+            
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    public void didLose(){
+      try {
+            win = 2;
+            Parent root = FXMLLoader.load(getClass().getResource("/assets/OnlineResult.fxml"));
+            
+            Scene scene = new Scene(root);
+            
+            Stage stage =(Stage) position_1.getScene().getWindow();
+            
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    public void didTie(){
+       try {
+            win = 3;
+            Parent root = FXMLLoader.load(getClass().getResource("/assets/OnlineResult.fxml"));
+            
+            Scene scene = new Scene(root);
+            
+            Stage stage =(Stage) position_1.getScene().getWindow();
+            
+            stage.setScene(scene);
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   public static int getResult(){
+       return win;
+   } 
     
 }

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 /**
  *
  * @author Dell
@@ -21,7 +22,7 @@ public class TicTacToeClient extends Application {
     public void start(Stage stage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/welcome/home.fxml"));
-
+        
         
         Scene scene = new Scene(root);
         
