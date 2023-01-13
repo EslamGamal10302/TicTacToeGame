@@ -121,7 +121,31 @@ public class DataAccessmethods {
                 con.close();
                 return players;
 
-    } 
+    }
+     
+      public static ArrayList<Integer> getCountOfPlayers () throws SQLException {             
+        DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        ArrayList<Integer> numberOfPlayers = new ArrayList<>();
+        PreparedStatement pst = con.prepareStatement("SELECT COUNT(USERNAME) FROM PLAYER GROUP BY STATUS ORDER BY STATUS " ,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs =pst.executeQuery();
+                 int i=1;
+                 
+                while (rs.next()) {
+                    numberOfPlayers.add(rs.getInt(1));
+                    System.out.println("number of online"+rs.getInt(1));    
+                }
+                
+                
+       
+        con.commit();
+        pst.close();
+        con.close();
+ 
+        return numberOfPlayers;
+
+
+    }
        
        
        
