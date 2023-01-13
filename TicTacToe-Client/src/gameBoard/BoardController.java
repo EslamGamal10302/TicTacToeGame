@@ -106,7 +106,7 @@ public class BoardController implements Initializable {
      public void choosePlayer() {
      if (move.equalsIgnoreCase("x")) {  
          storedMove=move;
-        image = new Image("/assets/xchar.png");
+        image = new Image("/assets/xchar (1).png");
         move = "o";
      }     else {
            storedMove=move;

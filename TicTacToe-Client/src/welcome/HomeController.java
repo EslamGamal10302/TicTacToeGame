@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tictactoe.client.Utility;
 
@@ -41,13 +43,13 @@ public class HomeController implements Initializable {
     private Button ButtonOnlineMode;
 
     @FXML
-    private Button ButtonHome;
+    private ImageView ButtonHome;
     
     @FXML
     private Button recordingButton;
     
      @FXML
-    void exitGame(ActionEvent event) {
+    void exitGame(MouseEvent event) {
         Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -94,7 +96,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        // TODO
+      
     }    
     
     

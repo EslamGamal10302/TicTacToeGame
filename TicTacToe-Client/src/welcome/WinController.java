@@ -99,8 +99,8 @@ public class WinController implements Initializable {
         }
         mediaPlayer= new MediaPlayer(media);
         video.setMediaPlayer(mediaPlayer);
-        video.setFitHeight(450);
-        video.setFitWidth(350);
+        video.setFitHeight(400);
+        video.setFitWidth(700);
         mediaPlayer.play();
         //winText.setText(value);
         
