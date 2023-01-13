@@ -30,9 +30,9 @@
             <Font name="Harlow Solid Italic" size="35.0" />
          </font>
       </Label>
-      <Button fx:id="playerBut" layoutX="587.0" layoutY="515.0" mnemonicParsing="false" onAction="#goToPlayers" prefHeight="54.0" prefWidth="187.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 30;" text="Players">
+      <Button fx:id="playerBut" layoutX="591.0" layoutY="501.0" mnemonicParsing="false" onAction="#goToPlayers" prefHeight="54.0" prefWidth="187.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 30;" text="Players">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold Italic" size="24.0" />
          </font></Button>
       <Button fx:id="home" layoutX="42.0" layoutY="501.0" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="54.0" prefWidth="187.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 30;" text="Home">
          <font>
