@@ -27,7 +27,7 @@ public class DataAccessmethods {
        public static int signUp(JSONObject positionJson ,int status) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         //PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER VALUES (? , ?,? )");
         PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
         
@@ -52,7 +52,7 @@ public class DataAccessmethods {
      public static int login(JSONObject positionJson) throws SQLException {
         int result = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
         
        // result = pst.executeQuery();
@@ -75,7 +75,7 @@ public class DataAccessmethods {
        public static int checkUnique(JSONObject positionJson) throws SQLException {
         int check = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
         
        // result = pst.executeQuery();
@@ -99,7 +99,7 @@ public class DataAccessmethods {
      public static ArrayList<Player> getPlayersFromDatabase() throws SQLException{
        
                 DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM PLAYER " , ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
     
                 ArrayList<Player> players = new ArrayList<>()  ;
@@ -126,7 +126,7 @@ public class DataAccessmethods {
      
       public static ArrayList<Integer> getCountOfPlayers () throws SQLException {             
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         ArrayList<Integer> numberOfPlayers = new ArrayList<Integer>(Collections.nCopies(3, 0));
         PreparedStatement pst = con.prepareStatement("SELECT COUNT(USERNAME) FROM PLAYER GROUP BY STATUS ORDER BY STATUS " ,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs =pst.executeQuery();
