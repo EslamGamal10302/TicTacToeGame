@@ -31,8 +31,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineBuilder;
 import javafx.stage.Stage;
-import javax.json.Json;
-import javax.json.JsonObject;
 import org.json.simple.JSONObject;
 import tictactoe.client.Utility;
 import welcome.HomeController;
