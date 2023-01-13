@@ -31,7 +31,7 @@ public class PlayerHandler extends Thread {
 
     private DataInputStream serverDataInput;
     private PrintStream serverDataOutput;
-    private String userName;
+    public String userName;
     private boolean closeThread;
     private GameHandler gamelogic;
     private static Vector<PlayerHandler> clientsVector = new Vector<PlayerHandler>();
@@ -134,6 +134,12 @@ public class PlayerHandler extends Thread {
         player1.gamelogic =gamelogic;
         gamelogic.setPlayer1(player1);
         gamelogic.setPlayer2(player2);
+        int status=2;
+        try {
+            DataAccessmethods.inGame(status,player1.userName, player2.userName);
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     void sendTurn(String turnMassige) {

@@ -5,7 +5,14 @@
  */
 package gameHandler;
 
+import dataAccesslayer.Game;
+import dataAccesslayer.GamesDAL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.JSONObject;
 
 /**
@@ -18,15 +25,18 @@ public class GameHandler {
     private String [] playedMoves;
     private int currentTurn;
     private JSONObject moveJson;
-    private ArrayList<Integer> move;
+    //private ArrayList<Integer> move;
+    private int move[];
+    int i=1;
 
     
 
     public GameHandler() {
         moveJson = new JSONObject();
         playedMoves = new String[9];
+        move = new int[10];
         currentTurn=1;
-        move = new ArrayList<>();
+       
     }
 
     public void setPlayer1(PlayerHandler player1) {
@@ -37,7 +47,10 @@ public class GameHandler {
         this.player2 = player2;
     }
     public String getJosnMassige(int position) {
-        move.add(position);
+        //move.add(position);
+        
+        move[i]= position;
+        i++;
         moveJson.put("position", position);
         addToMovesArr(position);
         changPlayer();
@@ -66,63 +79,79 @@ public class GameHandler {
        if(playedMoves[0]==playedMoves[1]&&playedMoves[0]==playedMoves[2]&&(playedMoves[0]=="x"||playedMoves[0]=="o")){
             if(playedMoves[0]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame ();       
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            setWinposition(1,3);
        }else if(playedMoves[3]==playedMoves[5]&&playedMoves[3]==playedMoves[4]&&(playedMoves[3]=="x"||playedMoves[3]=="o")){
            if(playedMoves[3]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            
            setWinposition(4,6);
        }else if(playedMoves[6]==playedMoves[7]&&playedMoves[6]==playedMoves[8]&&(playedMoves[6]=="x"||playedMoves[6]=="o")){
            if(playedMoves[6]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
          
            setWinposition(7,9);
        }else if(playedMoves[0]==playedMoves[3]&&playedMoves[0]==playedMoves[6]&&(playedMoves[0]=="x"||playedMoves[0]=="o")){
            if(playedMoves[0]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            
            setWinposition(1,7);
        }else if(playedMoves[1]==playedMoves[4]&&playedMoves[1]==playedMoves[7]&&(playedMoves[1]=="x"||playedMoves[1]=="o")){
            if(playedMoves[1]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            
            setWinposition(2,8);
        }else if(playedMoves[2]==playedMoves[5]&&playedMoves[2]==playedMoves[8]&&(playedMoves[2]=="x"||playedMoves[2]=="o")){
            if(playedMoves[2]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            
            setWinposition(3,9);
        }else if(playedMoves[0]==playedMoves[4]&&playedMoves[0]==playedMoves[8]&&(playedMoves[0]=="x"||playedMoves[0]=="o")){
            if(playedMoves[0]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
           
            setWinposition(1,9);
        }else if(playedMoves[2]==playedMoves[4]&&playedMoves[2]==playedMoves[6]&&(playedMoves[2]=="x"||playedMoves[2]=="o")){
            if(playedMoves[2]=="x"){
                 moveJson.put("gameStat", 1);
+                dataOfGame (); 
             }else{
                 moveJson.put("gameStat", 2);
+                dataOfGame (); 
             }
            
            setWinposition(3,7);
@@ -154,5 +183,29 @@ public class GameHandler {
     void sendMassigeToPlayer(String turnMassige) {
         player1.sendTurn(turnMassige);
         player2.sendTurn(turnMassige);
+    }
+    public void dataOfGame (){
+         Game dataGame = new Game();
+                dataGame.setPlayer_1(player1.userName);
+                dataGame.setPlayer_2(player2.userName);
+                dataGame.setStep_1(move[1]);
+                dataGame.setStep_2(move[2]);
+                dataGame.setStep_3(move[3]);
+                dataGame.setStep_4(move[4]);
+                dataGame.setStep_5(move[5]);
+                dataGame.setStep_6(move[6]);
+                dataGame.setStep_7(move[7]);
+                dataGame.setStep_8(move[8]);
+                dataGame.setStep_9(move[9]);
+                dataGame.setStatus(1);
+                //Date date = new Date();
+                //dataGame.setDate((java.sql.Date) date);
+                java.sql.Date date=new java.sql.Date(System.currentTimeMillis());
+                dataGame.setDate( date);
+                try {
+                    GamesDAL.insertGame(dataGame);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
 }
