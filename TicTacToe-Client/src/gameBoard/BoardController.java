@@ -5,6 +5,7 @@
  */
 package gameBoard;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import java.net.URL;
@@ -28,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 import tictactoe.client.Utility;
 import welcome.HomeController;
 
@@ -87,6 +89,8 @@ public class BoardController implements Initializable {
     private int flag = 0 ;
     private int flag2=0;
     private int i=0;
+    private int [] arrangedPlayed;
+    private int counter ;
     boolean pos1_IsClicked = true;
     boolean pos2_IsClicked = true;
     boolean pos3_IsClicked = true;
@@ -142,12 +146,14 @@ public class BoardController implements Initializable {
              boolean flag_pos = true;
                 while(flag_pos&&i<9)
                 {
-                  if(Clicked[i])
-                   { 
+                  if(Clicked[i])                                 
+                   {                                   
                     myBtn = btns[i];
                     myBtn.setImage(image);   
                     flag_pos = false;
                     Clicked[i]=false;
+                    arrangedPlayed[counter]=i+1;
+                    counter ++;
                     flag2=0;
                     played[i+1]="o";
                        
@@ -173,86 +179,103 @@ public class BoardController implements Initializable {
          System.out.println("YOU WIN");
          drawLine(position_1,position_3);
           flag = 1 ; 
+          createJson(1,3);
           BoardController.setWinner(1);
      }
      else if (played[4]=="x" && played[5]=="x" && played[6]=="x"){
          drawLine(position_4,position_6);
          flag = 1 ; 
+         createJson(4,6);
          BoardController.setWinner(1);
      }
      else if (played[7]=="x" && played[8]=="x" && played[9]=="x"){
          drawLine(position_7,position_9);
          flag = 1 ; 
+         createJson(7,9);
          BoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[4]=="x" && played[7]=="x"){
          drawLine(position_1,position_7);
          flag = 1 ; 
+         createJson(1,7);
          BoardController.setWinner(1);
      }
      else if (played[2]=="x" && played[5]=="x" && played[8]=="x"){
          drawLine(position_2,position_8);
          flag = 1 ; 
+         createJson(2,8);
          BoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[6]=="x" && played[9]=="x"){
          drawLine(position_3,position_9);
          flag = 1 ; 
+         createJson(3,9);
          BoardController.setWinner(1);
      }
      else if (played[1]=="x" && played[5]=="x" && played[9]=="x"){
          drawLine(position_1,position_9);
          flag = 1 ; 
+         createJson(1,9);
          BoardController.setWinner(1);
      }
      else if (played[3]=="x" && played[5]=="x" && played[7]=="x"){
          drawLine(position_3,position_7);
          flag = 1 ; 
+         createJson(3,7);
          BoardController.setWinner(1);
      } 
      else if (played[1]=="o" && played[2]=="o" && played[3]=="o"){
          drawLine(position_1,position_3);
          flag = 1 ; 
+         createJson(1,3);
          BoardController.setWinner(2);
      }
      else if (played[4]=="o" && played[5]=="o" && played[6]=="o"){
          drawLine(position_4,position_6);
          flag = 1 ; 
+         createJson(4,6);
          BoardController.setWinner(2);
      }
      else if (played[7]=="o" && played[8]=="o" && played[9]=="o"){
          drawLine(position_7,position_9);
          flag = 1 ; 
+         createJson(7,9);
          BoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[4]=="o" && played[7]=="o"){
          drawLine(position_1,position_7);
          flag = 1 ; 
+         createJson(1,7);
          BoardController.setWinner(2);
      }
      else if (played[2]=="o" && played[5]=="o" && played[8]=="o"){
          drawLine(position_2,position_8);
          flag = 1 ; 
+         createJson(2,8);
          BoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[6]=="o" && played[9]=="o"){
          drawLine(position_3,position_9);
          flag = 1 ; 
+         createJson(3,9);
          BoardController.setWinner(2);
      }
      else if (played[1]=="o" && played[5]=="o" && played[9]=="o"){
          drawLine(position_1,position_9);
          flag = 1 ; 
+         createJson(1,9);
          BoardController.setWinner(2);
      }
      else if (played[3]=="o" && played[5]=="o" && played[7]=="o"){
          drawLine(position_3,position_7);
          flag = 1 ; 
+         createJson(3,7);
          BoardController.setWinner(2);
      } else if (Clicked[0]==false&&Clicked[1]==false&&Clicked[2]==false&&Clicked[3]==false&&Clicked[4]==false&&Clicked[5]==false&&Clicked[6]==false&&Clicked[7]==false&&Clicked[8]==false) {
             
 
          try {
+             createJson(0,0);
              BoardController.setWinner(3);
              
              Parent root = FXMLLoader.load(getClass().getResource("/welcome/resultVsComputer.fxml"));
@@ -325,6 +348,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_8.setImage(image);
       played[8]=storedMove;
+      arrangedPlayed[counter]=8;
+      counter ++;
       System.out.println("8");
       System.out.println(played[8]);
       checkWinner();
@@ -355,6 +380,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_5.setImage(image);
       played[5]=storedMove;
+      arrangedPlayed[counter]=5;
+      counter ++;
       System.out.println("5");
       System.out.println(played[5]);
       checkWinner();
@@ -385,6 +412,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_4.setImage(image);
      played[4]=storedMove;
+     arrangedPlayed[counter]=4;
+     counter ++;
       System.out.println("4");
       System.out.println(played[4]);
       checkWinner();
@@ -415,6 +444,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_9.setImage(image);
       played[9]=storedMove;
+      arrangedPlayed[counter]=9;
+      counter ++;
       System.out.println("9");
       System.out.println(played[9]);
       checkWinner();
@@ -445,6 +476,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_1.setImage(image);
       played[1]=storedMove;
+      arrangedPlayed[counter]=1;
+      counter ++;
       System.out.println("1");
       System.out.println(played[1]);
       checkWinner();
@@ -476,6 +509,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_7.setImage(image);
       played[7]=storedMove;
+      arrangedPlayed[counter]=7;
+      counter ++;
       System.out.println("7");
       System.out.println(played[7]);
       checkWinner();
@@ -506,6 +541,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_6.setImage(image);
       played[6]=storedMove;
+      arrangedPlayed[counter]=6;
+      counter ++;
       System.out.println("6");
       System.out.println(played[6]);
       checkWinner();
@@ -536,6 +573,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_3.setImage(image);
       played[3]=storedMove;
+      arrangedPlayed[counter]=3;
+      counter ++;
       System.out.println("3");
       System.out.println(played[3]);
       checkWinner();
@@ -566,6 +605,8 @@ public class BoardController implements Initializable {
       choosePlayer();
       position_2.setImage(image);
       played[2]=storedMove;
+      arrangedPlayed[counter]=2;
+      counter ++;
       System.out.println("2");
       System.out.println(played[2]);
       checkWinner();
@@ -585,10 +626,43 @@ public class BoardController implements Initializable {
       }
      }
     }
+    
+     public  void createJson(int position_1,int position_2){
+                 FileWriter file = null;
+                 //int i = 1;
+       try {
+         
+            JSONObject obj = new JSONObject();
+//            obj.keySet().size();
+            int j = 1;
+            for(int i = 1; i < 10 ; i++){
+            if(arrangedPlayed[i]!=0){
+            obj.put(i, arrangedPlayed[i]);
+            j++;
+            }
+            }
+           obj.put(j,position_1);
+           obj.put(j+1,position_2);
+           file = new FileWriter("record.json");
+           file.write(obj.toString());
+           file.close();
+           //obj.keySet().size();
+           System.out.println(obj.keySet().size());
+           int size = obj.keySet().size(); 
+           for (int i =1 ; i<=size; i++){
+               System.out.println(obj.get(i));
+           }
+       } catch (IOException ex) {
+           Logger.getLogger(TwoPlayersGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+       } 
+        
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
          move="x";
         played = new String[10];
+        arrangedPlayed = new int [10];
+         counter = 1;
       //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

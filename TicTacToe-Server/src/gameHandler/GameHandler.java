@@ -5,6 +5,7 @@
  */
 package gameHandler;
 
+import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 /**
@@ -17,11 +18,15 @@ public class GameHandler {
     private String [] playedMoves;
     private int currentTurn;
     private JSONObject moveJson;
+    private ArrayList<Integer> move;
+
+    
 
     public GameHandler() {
         moveJson = new JSONObject();
         playedMoves = new String[9];
         currentTurn=1;
+        move = new ArrayList<>();
     }
 
     public void setPlayer1(PlayerHandler player1) {
@@ -32,6 +37,7 @@ public class GameHandler {
         this.player2 = player2;
     }
     public String getJosnMassige(int position) {
+        move.add(position);
         moveJson.put("position", position);
         addToMovesArr(position);
         changPlayer();

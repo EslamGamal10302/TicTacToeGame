@@ -44,8 +44,13 @@ public class ResultVsComputerController implements Initializable {
 
     @FXML
     private Text winText;
+    
+      @FXML
+    private Button replay;
 
     private MediaPlayer  mediaPlayer ;
+    
+    
     
     @FXML
     void exitAction(MouseEvent event) {
@@ -62,6 +67,18 @@ public class ResultVsComputerController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    @FXML
+    void replayAction(MouseEvent event) {
+       mediaPlayer.stop();
+         try {
+            Utility.changeTOScene(getClass(), event, "/assets/ReplayBoard.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
