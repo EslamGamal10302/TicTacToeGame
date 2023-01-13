@@ -71,22 +71,32 @@ public class PlayerCellController extends ListCell<Player> {
         }
         else {
             playerName.setText(player.getUsername());
+            playerName.setStyle("-fx-text-fill: #050A30;-fx-font: 18 arial;");
+           
             playerScore.setText(Integer.toString(player.getScore()));
+            playerScore.setStyle("-fx-text-fill: #050A30;-fx-font: 18 arial;");
+            
             switch (player.getStates()) {
                 case Player.AVAILBLE:
-                    challengeButton.setStyle("-fx-background-color:#FF66FF; ");
+                    challengeButton.setStyle("-fx-background-color:#18A558;-fx-background-radius: 30; ");
+                   
                     challengeButton.setDisable(false);
                     playerStat.setText("Online");
+                    playerStat.setStyle("-fx-text-fill: #18A558;");
                     break;
                 case Player.OFFLINE:
-                    challengeButton.setStyle("-fx-background-color: #ff0000; ");
+                    challengeButton.setStyle("-fx-background-color: #FF8A8A;-fx-background-radius: 30; ");
+                    
                     challengeButton.setDisable(true);
-                    playerStat.setText("Offlin");
+                    playerStat.setText("Offline");
+                    playerStat.setStyle("-fx-text-fill: #FF8A8A;");
                     break;
                 case Player.INGAME:
-                    challengeButton.setStyle("-fx-background-color: #808080; ");
+                    challengeButton.setStyle("-fx-background-color: #ffff66;-fx-background-radius: 30; ");
+                   
                     challengeButton.setDisable(true);
                     playerStat.setText("In game");
+                    playerStat.setStyle("-fx-text-fill: #ffff66;");
                     break;
             }
             challengeButton.setOnAction((event) -> {

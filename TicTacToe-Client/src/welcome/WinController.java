@@ -73,8 +73,8 @@ public class WinController implements Initializable {
         Media media = new Media(getClass().getResource("/assets/winner.mp4").toExternalForm());
         mediaPlayer= new MediaPlayer(media);
         video.setMediaPlayer(mediaPlayer);
-        video.setFitHeight(450);
-        video.setFitWidth(350);
+        video.setFitHeight(400);
+        video.setFitWidth(700);
         mediaPlayer.play();
         //winText.setText(value);
         int x= TwoPlayersGameBoardController.getWinner();

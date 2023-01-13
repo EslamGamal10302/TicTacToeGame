@@ -81,7 +81,7 @@ public class ResultVsComputerController implements Initializable {
         mediaPlayer= new MediaPlayer(media);
         video.setMediaPlayer(mediaPlayer);
         video.setFitHeight(400);
-        video.setFitWidth(350);
+        video.setFitWidth(700);
         mediaPlayer.play();
         //winText.setText(value);
         

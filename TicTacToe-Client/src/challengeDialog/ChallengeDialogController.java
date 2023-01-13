@@ -63,6 +63,7 @@ public class ChallengeDialogController implements Initializable {
                         Scene scene = new Scene(root);
                         gameBoard.setTurn(2);
                         mainStage.setScene(scene);
+   
                         mainStage.show();
                         stage.close();
                         
