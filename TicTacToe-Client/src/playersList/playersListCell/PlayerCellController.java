@@ -74,7 +74,7 @@ public class PlayerCellController extends ListCell<Player> {
             playerScore.setText(Integer.toString(player.getScore()));
             switch (player.getStates()) {
                 case Player.AVAILBLE:
-                    challengeButton.setStyle("-fx-background-color: (255,255,102); ");
+                    challengeButton.setStyle("-fx-background-color:#FF66FF; ");
                     challengeButton.setDisable(false);
                     playerStat.setText("Online");
                     break;

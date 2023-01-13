@@ -83,6 +83,7 @@ public class FXMLDocumentController implements Initializable {
         series1.setName("online");
        
         //numberOfPlayers.get(1)
+        
         series1.getData().add(new XYChart.Data<>("players", numberOfPlayers.get(0)));
 
         XYChart.Series<String, Number> series2 = new XYChart.Series<>();

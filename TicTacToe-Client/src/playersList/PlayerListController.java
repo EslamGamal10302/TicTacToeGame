@@ -148,10 +148,8 @@ public class PlayerListController implements Initializable {
                         break;
 
                     case 4:
-                        JSONArray  playersJSON = (JSONArray) playerJson.get("player");
-                        System.out.println(playerJson.toJSONString());
-                        playersObservableList.clear();
-                        playersObservableList.addAll(decodePlayersJSONArray(playersJSON));
+                        
+                        addPlayerToList(playerJson);
                         break;
                     
                 }
@@ -164,6 +162,17 @@ public class PlayerListController implements Initializable {
             }
         }).start();  
     }   
+
+    private void addPlayerToList(JSONObject playerJson) {
+        Platform.runLater(() -> {
+       
+            JSONArray  playersJSON = (JSONArray) playerJson.get("player");
+            System.out.println(playerJson.toJSONString());
+            playersObservableList.clear();
+            playersObservableList.addAll(decodePlayersJSONArray(playersJSON));
+        });
+        
+    }
 
     private void showDialog(JSONObject playerJson) {
         Platform.runLater(() -> {
