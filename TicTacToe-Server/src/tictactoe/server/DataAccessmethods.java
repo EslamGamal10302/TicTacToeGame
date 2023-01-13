@@ -74,7 +74,7 @@ public class DataAccessmethods {
        public static int checkUnique(JSONObject positionJson) throws SQLException {
         int check = 0;                
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         //PreparedStatement pst = con.prepareStatement("SELECT *  FROM PLAYER " + "WHERE USERNAME LIKE ? ");
         
        // result = pst.executeQuery();
@@ -103,7 +103,7 @@ public class DataAccessmethods {
     
                 ArrayList<Player> players = new ArrayList<>()  ;
                 ResultSet rs = ps.executeQuery();
-                rs.first();
+                
                 int i =0;
                 while(rs.next())
                 {

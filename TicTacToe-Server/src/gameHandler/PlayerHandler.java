@@ -54,14 +54,17 @@ public class PlayerHandler extends Thread {
 
     @Override
     public void run() {
+                        BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
 
         while (true) {
+            System.out.println("New loop");
 
             try {
 
-                BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
+                
                 JSONObject playerJson = (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
-                int type = (int) playerJson.get("type");
+                int type = ((Long) playerJson.get("type")).intValue();
+                System.out.println(type);
                 switch (type) {
                     case 1:
                         challengePlayer(playerJson);
@@ -75,7 +78,8 @@ public class PlayerHandler extends Thread {
 
                         break;
                     case 4:
-                        String turnMassige = gamelogic.getJosnMassige((int) playerJson.get("position"));
+                        String turnMassige = gamelogic.getJosnMassige(((Long) playerJson.get("position")).intValue());
+                        System.out.println(turnMassige);
                         gamelogic.sendMassigeToPlayer(turnMassige);
                         break;
                     case 5:
@@ -126,12 +130,14 @@ public class PlayerHandler extends Thread {
     }
 
     private void startGame(PlayerHandler player1, PlayerHandler player2) {
+        gamelogic =new GameHandler();
+        player1.gamelogic =gamelogic;
         gamelogic.setPlayer1(player1);
         gamelogic.setPlayer2(player2);
     }
 
     void sendTurn(String turnMassige) {
-        serverDataOutput.print(turnMassige);
+        serverDataOutput.println(turnMassige);
     }
 
     private void rejectResponse(JSONObject playerJson) {

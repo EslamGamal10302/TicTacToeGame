@@ -14,3 +14,10 @@ TicTacToe-Client/dist/TicTacToe-Client.html
 TicTacToe-Server/build/classes/tictactoe/server/DataAccessmethods.class
 *.class
 *.jar
+TicTacToe-Client/dist/TicTacToe-Client.html
+TicTacToe-Client/dist/TicTacToe-Client.jar
+TicTacToe-Client/dist/TicTacToe-Client.jnlp
+*.properties
+*.class
+*.class
+TicTacToe-Server/dist/TicTacToe-Server.html

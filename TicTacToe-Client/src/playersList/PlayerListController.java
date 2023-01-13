@@ -6,6 +6,7 @@
 package playersList;
 
 import challengeDialog.ChallengeDialogController;
+import gameBoard.OnlineGameBoardController;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
@@ -59,6 +61,8 @@ public class PlayerListController implements Initializable {
     private ObservableList<Player> playersObservableList; 
     private boolean gameNotStarted;
     private String josnString;
+    private Alert watingAlert;
+    
     
     private BufferedReader clientBufferedReader;
       
@@ -94,6 +98,7 @@ public class PlayerListController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        watingAlert = new Alert(Alert.AlertType.INFORMATION);
         try {
             clientBufferedReader = new BufferedReader(new InputStreamReader(SocketClient.getInstant().getSocket().getInputStream()));
         } catch (IOException ex) {
@@ -103,7 +108,7 @@ public class PlayerListController implements Initializable {
         playersObservableList =FXCollections.observableArrayList();
         playerList.getStylesheets().add(getClass().getResource("listViewcss.css").toString());
         playerList.setCellFactory((param) -> {
-            return new PlayerCellController(); //To change body of generated lambdas, choose Tools | Templates.
+            return new PlayerCellController(watingAlert); //To change body of generated lambdas, choose Tools | Templates.
         });
         playerList.setItems(playersObservableList);
          new Thread(() -> {
@@ -111,24 +116,40 @@ public class PlayerListController implements Initializable {
             while(gameNotStarted){
                 try {
                 playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
+                    System.out.println(playerJson.toString());
                     Long temp =(long)playerJson.get("type");
                     int type = temp.intValue();
-                    System.out.println("the typ is"+type);
+                    
                   switch(type){
                     case 1:
-                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/challengeDialog/challengeDialogFXML.fxml"));
-                        Parent parent = fxmlLoader.load();
-                        ChallengeDialogController dialogController = fxmlLoader.<ChallengeDialogController>getController();
-                        dialogController.setUserName((String)playerJson.get("userName"));
-                        Scene scene = new Scene(parent, 300, 200);
-                        Stage stage = new Stage();
-                        stage.initModality(Modality.APPLICATION_MODAL);
+                        gameNotStarted=false;
+                        showDialog(playerJson);                     
+                        break;
+                        
+                    case 2:
+                        gameNotStarted =false;
+                        watingAlert.close();
+                        Platform.runLater(() -> {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/gameBoard/OnlineGameBoard.fxml")));
+                        
+                        Parent root = fxmlLoader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage =(Stage) recordsBut.getScene().getWindow();
+                        OnlineGameBoardController gameBoard =fxmlLoader.<OnlineGameBoardController>getController();
+                        gameBoard.setTurn(1);
+                        
                         stage.setScene(scene);
-                        stage.showAndWait();                     
+                        stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                        });
                         break;
 
                     case 4:
                         JSONArray  playersJSON = (JSONArray) playerJson.get("player");
+                        System.out.println(playerJson.toJSONString());
                         playersObservableList.clear();
                         playersObservableList.addAll(decodePlayersJSONArray(playersJSON));
                         break;
@@ -143,6 +164,29 @@ public class PlayerListController implements Initializable {
             }
         }).start();  
     }   
+
+    private void showDialog(JSONObject playerJson) {
+        Platform.runLater(() -> {
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/challengeDialog/challengeDialogFXML.fxml"));
+        Parent parent;
+            
+                parent = fxmlLoader.load();
+           
+        ChallengeDialogController dialogController = fxmlLoader.<ChallengeDialogController>getController();
+        dialogController.setUserName((String)playerJson.get("userName"));
+        Scene scene = new Scene(parent, 300, 200);
+        Stage stage = new Stage();
+        Stage mainStage =(Stage) recordsBut.getScene().getWindow();
+        dialogController.setMainStage(mainStage);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
+         } catch (IOException ex) {
+                Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }
 
     private ArrayList<Player> decodePlayersJSONArray(JSONArray playersJSON) {
        ArrayList<Player> Players = new ArrayList<>();
