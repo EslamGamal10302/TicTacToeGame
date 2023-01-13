@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -63,6 +64,7 @@
       </Text>
       <Text fill="#f2fa15" layoutX="53.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 1" wrappingWidth="52.59522271156311" />
       <Text fill="#f2fa15" layoutX="491.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player 2" />
-      <Button fx:id="back_button1" layoutX="504.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#backButtonClicked" prefHeight="29.0" prefWidth="65.0" style="-fx-background-color: #ffff66; -fx-background-radius: 10;" text="Rec" />
+      <Button fx:id="record" layoutX="504.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#recordButtonClicked" prefHeight="29.0" prefWidth="65.0" style="-fx-background-color: #ffff66; -fx-background-radius: 10;" text="Rec" />
+      <MediaView fx:id="music" fitHeight="5.0" fitWidth="5.0" layoutX="59.0" layoutY="185.0" />
    </children>
 </AnchorPane>
