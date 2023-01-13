@@ -553,11 +553,11 @@ public class TwoPlayersGameBoardController implements Initializable {
         arrangedPlayed = new int [10];
          counter = 1;
          
-       Media media = new Media(getClass().getResource("/assets/music.mp3").toExternalForm());
-       mediaPlayer= new MediaPlayer(media);
-       music.setMediaPlayer(mediaPlayer);
-       mediaPlayer.play();       
-        //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      Media media = new Media(getClass().getResource("/assets/music.mp3").toExternalForm());
+      mediaPlayer= new MediaPlayer(media);
+      music.setMediaPlayer(mediaPlayer);
+      mediaPlayer.play();       
+     // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     

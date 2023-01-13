@@ -3,23 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/gameBoard/TwoPlayersGameBoardController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/welcome/WinController.java</file>
-            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/assets/OnlineResultController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/welcome/ResultVsComputerController.java</file>
             <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
-=======
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayerCellController.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/recordsList/recordsListCell/OldGames.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/onlineGame/OnlineGame.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/tictactoe/client/TicTacToeClient.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/gameBoard/OnlineGameBoardController.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/playersList/playersListCell/PlayersData.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/recordsList/recordsListCell/RecordsListCellController.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/recordsList/RecordsListController.java</file>
-            <file>file:/G:/ITI_MOBILE_APP/Java%20Project/github/TicTacToeGame/TicTacToe-Client/src/login/LoginController.java</file>
->>>>>>> 7b56a8fd47497eb7150bf3a79625c6ebac441d2f
+            <file>file:/G:/ITI/project/TicTacToeGame/TicTacToe-Client/src/assets/ReplayBoardController.java</file>
         </group>
     </open-files>
 </project-private>

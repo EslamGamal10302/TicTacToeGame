@@ -62,7 +62,7 @@ public class ResultVsComputerController implements Initializable {
     void playAgainAction(MouseEvent event) {
         mediaPlayer.stop();
           try {
-            Utility.changeTOScene(getClass(), event, "/gameBoard/board.fxml");
+            Utility.changeTOScene(getClass(), event,  "/assets/ReplayBoard.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }

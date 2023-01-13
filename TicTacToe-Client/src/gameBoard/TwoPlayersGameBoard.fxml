@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -80,5 +81,6 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
+      <MediaView fx:id="music" fitHeight="5.0" fitWidth="5.0" layoutX="27.0" layoutY="135.0" />
    </children>
 </AnchorPane>
