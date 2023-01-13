@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -22,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import login.SocketClient;
 import org.json.simple.JSONObject;
+import playersList.PlayerListController;
 
 /**
  * FXML Controller class
@@ -44,6 +47,7 @@ public class ChallengeDialogController implements Initializable {
     private PrintStream serverDataOutput;
     private String userName;
     private Stage mainStage;
+    private PlayerListController ListController;
     
 
     @FXML
@@ -72,6 +76,19 @@ public class ChallengeDialogController implements Initializable {
 
     @FXML
     void refusePlaying(ActionEvent event) {
+        try {
+            JSONObject positionJson= new JSONObject();
+            positionJson.put("userName", userName);
+            positionJson.put("type", 3);
+            serverDataOutput = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+            
+            serverDataOutput.println(positionJson.toString());
+            ListController.startThread();
+            ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+        } catch (IOException ex) {
+            Logger.getLogger(ChallengeDialogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
     }
 
@@ -87,6 +104,10 @@ public class ChallengeDialogController implements Initializable {
 
     public void setMainStage(Stage mainStage) {
        this.mainStage = mainStage; 
+    }
+
+    public void setPlayerListControler(PlayerListController ListController) {
+       this.ListController =ListController;
     }
 
 }

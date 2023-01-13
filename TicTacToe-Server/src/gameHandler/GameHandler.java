@@ -17,6 +17,7 @@ public class GameHandler {
     private String [] playedMoves;
     private int currentTurn;
     private JSONObject moveJson;
+    private boolean gameDidStarted;
 
     public GameHandler() {
         moveJson = new JSONObject();
@@ -133,6 +134,7 @@ public class GameHandler {
                 moveJson.put("gameStat", 0);
                 setWinposition(0,0);
             }else{
+                gameDidStarted=false;
                 moveJson.put("gameStat", 3);
                 setWinposition(0,0);
             }
@@ -141,6 +143,7 @@ public class GameHandler {
     }
 
     private void setWinposition(int position1, int position2) {
+        gameDidStarted=false;
        moveJson.put("winPosition1", position1);
        moveJson.put("winPosition2", position2);
     }
@@ -149,4 +152,32 @@ public class GameHandler {
         player1.sendTurn(turnMassige);
         player2.sendTurn(turnMassige);
     }
+
+    public void setGameDidStarted(boolean gameDidStarted) {
+        this.gameDidStarted = gameDidStarted;
+    }
+
+    public boolean isGameDidStarted() {
+        return gameDidStarted;
+    }
+
+    void didSurrender(PlayerHandler player) {
+        if(player==player1){
+             moveJson.put("position", -1);
+             moveJson.put("playerTurn", -1);
+            moveJson.put("gameStat", 4);
+            moveJson.put("winPosition1", 0);
+            moveJson.put("winPosition2", 0);
+            player2.sendTurn(moveJson.toString());
+        }else{
+              moveJson.put("position", -1);
+            moveJson.put("playerTurn", -1);
+            moveJson.put("gameStat", 4);
+            moveJson.put("winPosition1", 0);
+            moveJson.put("winPosition2", 0);
+            player1.sendTurn(moveJson.toString());
+        }
+         gameDidStarted=false;
+    }
+    
 }

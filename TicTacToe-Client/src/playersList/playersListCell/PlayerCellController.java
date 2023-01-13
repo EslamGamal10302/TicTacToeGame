@@ -97,7 +97,8 @@ public class PlayerCellController extends ListCell<Player> {
                         challengeJson.put("type", 1);
                         challengeJson.put("userName", player.getUsername());
                         serverDataOutput.println(challengeJson.toString());
-                         watingAlert =new Alert(Alert.AlertType.INFORMATION);
+                        watingAlert.setContentText("wating for respond");
+                         watingAlert.show();
                         
                 } catch (IOException ex) {
                     Logger.getLogger(PlayerCellController.class.getName()).log(Level.SEVERE, null, ex);

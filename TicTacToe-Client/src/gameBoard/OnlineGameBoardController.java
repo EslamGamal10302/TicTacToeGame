@@ -5,22 +5,30 @@
  */
 package gameBoard;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import login.SocketClient;
 import onlineGame.OnlineGame;
+import org.json.simple.JSONObject;
+import tictactoe.client.Utility;
 
 /**
  * FXML Controller class
@@ -33,6 +41,7 @@ public class OnlineGameBoardController implements Initializable {
     private int currentTurn;
     private boolean playerMoved;
     private String currentImageUrl;
+    private PrintStream clientOutputStream;
  
     @FXML
     private AnchorPane anchor;
@@ -77,6 +86,16 @@ public class OnlineGameBoardController implements Initializable {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
+        try {
+            JSONObject positionJson= new JSONObject();
+            positionJson.put("type", 6);
+            
+            clientOutputStream = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream ());
+            clientOutputStream.println(positionJson.toString());
+            Utility.changeTOScene(getClass(), event, "PlayerListFXML.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -244,6 +263,13 @@ public class OnlineGameBoardController implements Initializable {
     public void didLose(){}
     public void didTie(){
         System.out.println("gameBoard.OnlineGameBoardController.didTie()");
+    }
+
+    public void opponentSurrender() {
+        Alert SurrenderAlert= new Alert(AlertType.INFORMATION);
+        SurrenderAlert.setContentText("Opponent Surrender");
+        SurrenderAlert.show();
+        
     }
     
 }

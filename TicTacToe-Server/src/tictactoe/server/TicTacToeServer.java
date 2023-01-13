@@ -80,8 +80,6 @@ public class TicTacToeServer extends Application {
                    int x =DataAccessmethods.login(positionJson);
                    System.out.println(x);
                    if (x==1){
-                       
-                       
                       System.out.println("success"); 
                       serverDataOutput.println("success_login"); 
                       new PlayerHandler(clientSocket, name_login);

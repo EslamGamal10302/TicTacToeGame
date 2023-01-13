@@ -36,6 +36,7 @@ public class PlayerHandler extends Thread {
     private GameHandler gamelogic;
     private static Vector<PlayerHandler> clientsVector = new Vector<PlayerHandler>();
     private static ArrayList<Player> playersList = new ArrayList<Player>();
+    private boolean isConected;
 
     public PlayerHandler(Socket clientSocket, String userName) {
         this.userName = userName;
@@ -45,6 +46,7 @@ public class PlayerHandler extends Thread {
             PlayerHandler.clientsVector.add(this);
             sendPlayersListToAll();
             start();
+            isConected=true;
         } catch (IOException ex) {
             Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,13 +58,14 @@ public class PlayerHandler extends Thread {
     public void run() {
                         BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(serverDataInput));
 
-        while (true) {
+        while (isConected) {
             System.out.println("New loop");
 
             try {
 
-                
-                JSONObject playerJson = (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
+                String jsonString =clientBufferedReader.readLine();
+                System.out.println(jsonString);
+                JSONObject playerJson = (JSONObject) new JSONParser().parse(jsonString);
                 int type = ((Long) playerJson.get("type")).intValue();
                 System.out.println(type);
                 switch (type) {
@@ -83,11 +86,28 @@ public class PlayerHandler extends Thread {
                         gamelogic.sendMassigeToPlayer(turnMassige);
                         break;
                     case 5:
+                        clientsVector.remove(this);
+                        isConected=false;
+                        if(gamelogic!=null){
+                            if (gamelogic.isGameDidStarted()){
+                                gamelogic.didSurrender(this);
+                             }
+                        }
+                        break;
+                    case 6:
+                        gamelogic.didSurrender(this);
                         break;
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
+                  clientsVector.remove(this);
+                isConected=false;
+                if(gamelogic!=null){
+                if (gamelogic.isGameDidStarted()){
+                    gamelogic.didSurrender(this);
+                }
+                }
+                Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex.getCause());
             } catch (ParseException ex) {
                 Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -131,6 +151,7 @@ public class PlayerHandler extends Thread {
 
     private void startGame(PlayerHandler player1, PlayerHandler player2) {
         gamelogic =new GameHandler();
+        gamelogic.setGameDidStarted(true);
         player1.gamelogic =gamelogic;
         gamelogic.setPlayer1(player1);
         gamelogic.setPlayer2(player2);

@@ -88,12 +88,12 @@ public class FXMLDocumentController implements Initializable {
 
         XYChart.Series<String, Number> series2 = new XYChart.Series<>();
         series2.setName("in game");
-        series2.getData().add(new XYChart.Data<>("players", numberOfPlayers.get(1)));
+        //series2.getData().add(new XYChart.Data<>("players", numberOfPlayers.get(1)));
 
         XYChart.Series<String, Number> series3 = new XYChart.Series<>();
        series3.setName("offline");
        
-       series3.getData().add(new XYChart.Data<>("players", numberOfPlayers.get(2)));
+      // series3.getData().add(new XYChart.Data<>("players", numberOfPlayers.get(2)));
 
         barChart.getData().addAll(series1, series2,series3);
         

@@ -30,9 +30,11 @@ public class OnlineGame {
     private OnlineGameBoardController gameController;
     private String positionJson;
     private PlayerMove move;
+    private boolean gameRuning;
 
     public OnlineGame(OnlineGameBoardController gameController) throws IOException {
         this.gameController = gameController;
+        gameRuning=true;
         serverSocket = SocketClient.getInstant().getSocket();
         clientInputStream = new DataInputStream(serverSocket.getInputStream ());
         clientOutputStream = new PrintStream(serverSocket.getOutputStream ());   
@@ -45,7 +47,7 @@ public class OnlineGame {
 
     private void getMoveFromServer() {
         new Thread(() -> {
-            while (true) {   
+            while (gameRuning) {   
                 System.out.println("new loop");
                 BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(clientInputStream));
                 try {
@@ -54,34 +56,43 @@ public class OnlineGame {
                     move= moveJsonMaker.getMove(str);
                     
                      System.out.println(move);
-                } catch (IOException ex) {
-                    
-                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
                 if(move.getGameStat()==gameController.getPlayerTurn()){
                     Platform.runLater(() -> {
-                        
+                        gameRuning =false;
                         gameController.drawLine(move.getWinPosition1(),move.getWinPosition2());
                         gameController.didWin();
                     });
-                }else if(move.getGameStat()==3){
+                }else if(move.getGameStat()==4){
+                Platform.runLater(() -> {
+                        gameController.opponentSurrender();
+                    });
+                }
+                else if(move.getGameStat()==3){
+                     gameRuning=false;
                     Platform.runLater(() -> {
                         gameController.didTie();
                     });
                 }else if(move.getGameStat()==0){
+                     gameRuning=false;
                    gameController.changeTurn(move.getPlayerTurn()); 
                 }else{
                     Platform.runLater(() -> {
-                        
+                         gameRuning=false;
                         gameController.drawLine(move.getWinPosition1(),move.getWinPosition2());
                         gameController.didLose();
                     });
-                }
+                }if(move.getPosition()!=-1){
                 Platform.runLater(() -> {
                         gameController.setImage(move.getPosition());
                     });
+                }
+                } catch (IOException ex) {
+                    gameRuning=false;
+                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }).start();
 

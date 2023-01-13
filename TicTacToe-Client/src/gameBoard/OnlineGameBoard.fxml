@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="395.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameBoard.OnlineGameBoardController">
    <children>
-      <ImageView fitHeight="407.0" fitWidth="600.0" layoutX="-13.0" layoutY="-6.0" pickOnBounds="true">
+      <ImageView fx:id="backButtonClicked" fitHeight="407.0" fitWidth="600.0" layoutX="-13.0" layoutY="-6.0" pickOnBounds="true">
          <image>
             <Image url="@../assets/background.jpg" />
          </image>
