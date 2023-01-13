@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 import org.json.simple.JSONObject;
 
@@ -123,7 +124,32 @@ public class DataAccessmethods {
                 con.close();
                 return players;
 
-    } 
+    }
+     
+      public static ArrayList<Integer> getCountOfPlayers () throws SQLException {             
+        DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        ArrayList<Integer> numberOfPlayers = new ArrayList<Integer>(Collections.nCopies(3, 0));
+        PreparedStatement pst = con.prepareStatement("SELECT COUNT(USERNAME) FROM PLAYER GROUP BY STATUS ORDER BY STATUS " ,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs =pst.executeQuery();
+                 int i=0;
+                 
+                while (rs.next()) {
+                    numberOfPlayers.set(i, rs.getInt(1));
+                    System.out.println("number "+rs.getInt(1));
+                    i++;
+                }
+                
+                
+       
+        con.commit();
+        pst.close();
+        con.close();
+ 
+        return numberOfPlayers;
+
+
+    }
        
        
        

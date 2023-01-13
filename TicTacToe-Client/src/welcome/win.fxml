@@ -23,12 +23,13 @@
                <children>
                   <MediaView fx:id="video" fitHeight="200.0" fitWidth="200.0" layoutX="131.0" layoutY="14.0" />
                   <Button fx:id="playAgain" layoutX="85.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#playAgainAction" style="-fx-background-color: rgb(255,255,102)rgb(255,255,102);" text="play again" />
-                  <Button fx:id="exit" layoutX="445.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#exitAction" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: rgb(255,255,102);" text="Exit" />
-                  <Text fx:id="winText" fill="#f2fa15" layoutX="231.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player  1  wins " wrappingWidth="149.9999989271164">
+                  <Button fx:id="exit" layoutX="461.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#exitAction" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: rgb(255,255,102);" text="Exit" />
+                  <Text fx:id="winText" fill="#f2fa15" layoutX="233.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player  1  wins " wrappingWidth="149.9999989271164">
                      <font>
                         <Font name="Arial" size="22.0" />
                      </font>
                   </Text>
+                  <Button fx:id="replay" layoutX="264.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#replayAction" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: rgb(255,255,102);" text="Replay" />
                </children>
             </Pane>
          </children>
