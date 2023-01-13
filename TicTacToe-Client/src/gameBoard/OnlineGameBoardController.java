@@ -195,7 +195,7 @@ public class OnlineGameBoardController implements Initializable {
         playerMoved = false;
        
         currentTurn=1;
-        currentImageUrl="/assets/xchar.png"; 
+        currentImageUrl="/assets/xchar (1).png"; 
         
     }   
     

@@ -27,10 +27,10 @@ public class TicTacToeClient extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        /*stage.setMinHeight(400);
-        stage.setMinWidth(605);
-        stage.setMaxHeight(400);
-        stage.setMaxWidth(605);*/
+        stage.setMinHeight(630);
+        stage.setMinWidth(815);
+        stage.setMaxHeight(630);
+        stage.setMaxWidth(815);
         stage.show();
     }
 
