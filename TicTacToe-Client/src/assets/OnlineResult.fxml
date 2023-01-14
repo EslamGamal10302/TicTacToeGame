@@ -12,26 +12,32 @@
 
 <AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assets.OnlineResultController">
    <children>
-      <StackPane layoutY="-1.0">
+      <StackPane layoutY="-1.0" />
+      <StackPane layoutX="-2.0" layoutY="-1.0">
          <children>
-            <ImageView fitHeight="399.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="602.0" fitWidth="800.0" pickOnBounds="true">
                <image>
-                  <Image url="@../assets/Image%209@1x.png" />
+                  <Image url="@Image%209@1x.png" />
                </image>
             </ImageView>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <MediaView fx:id="video" fitHeight="200.0" fitWidth="200.0" layoutX="143.0" layoutY="23.0" />
-                  <Button fx:id="exit" layoutX="430.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#exitAction" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: rgb(255,255,102)rgb(255,255,102);" text="Back" />
-                  <Text fx:id="winText" fill="#f2fa15" layoutX="243.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="you wins" wrappingWidth="165.66845880448818">
-                     <font>
-                        <Font name="Arial" size="22.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="replay" layoutX="90.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#replayAction" prefHeight="31.0" prefWidth="88.0" style="-fx-background-color: rgb(255,255,102)rgb(255,255,102);" text="Replay" />
-               </children>
-            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
          </children>
       </StackPane>
+      <Button fx:id="playAgain" layoutX="63.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#playAgainAction" style="-fx-background-color: rgb(255,255,102)rgb(255,255,102); -fx-background-radius: 30;" text="Replay">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="exit" layoutX="629.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#exitAction" prefHeight="51.0" prefWidth="136.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 30;" text="Back">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Button>
+      <Text fx:id="winText" fill="#f2fa15" layoutX="324.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="player  1  wins " wrappingWidth="200.0000037252903">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Text>
+      <MediaView fx:id="video" fitHeight="400.0" fitWidth="700.0" layoutX="61.0" layoutY="69.0" preserveRatio="false" />
    </children>
 </AnchorPane>

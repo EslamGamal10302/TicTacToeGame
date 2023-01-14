@@ -45,23 +45,14 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView ButtonHome;
     
-    @FXML
-    private Button recordingButton;
-    
+  
      @FXML
     void exitGame(MouseEvent event) {
         Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
-    @FXML
-    void showRecord(ActionEvent event) {
-      try {
-            Utility.changeTOScene(getClass(), event, "/recordsList/RecordsListFMLX.fxml");
-        } catch (Exception ex) {
-            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     @FXML
     void startMultiPlayerGame(ActionEvent event) {

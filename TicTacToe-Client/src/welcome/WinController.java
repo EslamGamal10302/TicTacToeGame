@@ -51,10 +51,12 @@ public class WinController implements Initializable {
     private MediaPlayer  mediaPlayer ;
     
     
+    
         @FXML
     void exitAction(MouseEvent event) {
        Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+     
     }
 
     @FXML

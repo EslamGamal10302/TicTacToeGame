@@ -80,9 +80,7 @@ public class TwoPlayersGameBoardController implements Initializable {
     @FXML
     private ImageView player_2;
     
-     @FXML
-    private Button record;
-     
+    
       @FXML
     private MediaView music; 
      

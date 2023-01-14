@@ -76,6 +76,8 @@ public class DataAccessmethods {
             pst_2.setString(2, player1);
             pst_2.setString(3, player2);
             int rs2 = pst_2.executeUpdate();
+            FXMLDocumentController fxml = new FXMLDocumentController();
+            fxml.changeStatistics();
             result = 1;
         
 
