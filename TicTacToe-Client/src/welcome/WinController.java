@@ -51,17 +51,19 @@ public class WinController implements Initializable {
     private MediaPlayer  mediaPlayer ;
     
     
+    
         @FXML
     void exitAction(MouseEvent event) {
        Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+     
     }
 
     @FXML
     void playAgainAction(MouseEvent event) {
         mediaPlayer.stop();
      try {
-            Utility.changeTOScene(getClass(), event, "/gameBoard/TwoPlayersGameBoard.fxml");
+            Utility.changeTOScene(getClass(), event, "/assets/ReplayBoard.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }    

@@ -26,8 +26,13 @@ public class DataAccessmethods {
     public static int signUp(JSONObject positionJson, int status) throws SQLException {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+<<<<<<< HEAD
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
         PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS,NO_GAMES,SCORE) VALUES (? , ? , ? ,?,0 ,0 )");
+=======
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
+        PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
+>>>>>>> afeb34542dd7f60c2e28a85b6c1743c8aa68a6a2
         pst.setString(1, (String) positionJson.get("userName"));
         pst.setString(2, (String) positionJson.get("password"));
         pst.setString(3, (String) positionJson.get("email"));
@@ -45,7 +50,7 @@ public class DataAccessmethods {
     public static int login(JSONObject positionJson, int status) throws SQLException {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         PreparedStatement pst = con.prepareStatement("SELECT * FROM PLAYER " + "WHERE USERNAME LIKE ? AND PASSWORD LIKE ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         pst.setString(1, (String) positionJson.get("userName"));
         pst.setString(2, (String) positionJson.get("password"));
@@ -70,12 +75,14 @@ public class DataAccessmethods {
      public static int inGame(int status,String player1 ,String player2) throws SQLException {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
             PreparedStatement pst_2 = con.prepareStatement("UPDATE  PLAYER  SET STATUS= ?  WHERE USERNAME =? OR  USERNAME =? ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst_2.setInt(1, status);
             pst_2.setString(2, player1);
             pst_2.setString(3, player2);
             int rs2 = pst_2.executeUpdate();
+            FXMLDocumentController fxml = new FXMLDocumentController();
+            fxml.changeStatistics();
             result = 1;
         
 
@@ -89,7 +96,7 @@ public class DataAccessmethods {
       public static int online(int status,String player1 ,String player2) throws SQLException {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
             PreparedStatement pst_2 = con.prepareStatement("UPDATE  PLAYER  SET STATUS= ?  WHERE USERNAME =? OR  USERNAME =? ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst_2.setInt(1, status);
             pst_2.setString(2, player1);
@@ -146,7 +153,7 @@ public class DataAccessmethods {
     public static int checkUnique(JSONObject positionJson) throws SQLException {
         int check = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
      
         PreparedStatement pst = con.prepareStatement("SELECT * FROM PLAYER " + "WHERE USERNAME LIKE ?", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         pst.setString(1, (String) positionJson.get("userName"));
@@ -167,7 +174,7 @@ public class DataAccessmethods {
     public static ArrayList<Player> getPlayersFromDatabase() throws SQLException {
 
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         PreparedStatement ps = con.prepareStatement("SELECT * FROM PLAYER ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
         ArrayList<Player> players = new ArrayList<>();
@@ -193,7 +200,7 @@ public class DataAccessmethods {
 
     public static ArrayList<Integer> getCountOfPlayers() throws SQLException {
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
         ArrayList<Integer> numberOfPlayers = new ArrayList<Integer>(Collections.nCopies(3, 0));
         PreparedStatement pst = con.prepareStatement("SELECT COUNT(USERNAME) FROM PLAYER GROUP BY STATUS ORDER BY STATUS ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet rs = pst.executeQuery();

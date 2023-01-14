@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -28,6 +29,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,6 +43,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import recordsList.RecordsListController;
+import recordsList.recordsListCell.OldGames;
 
 /**
  * FXML Controller class
@@ -68,18 +73,38 @@ public class PlayerListController implements Initializable {
       
        @FXML
     void goToRecords(ActionEvent event) {
+        PrintStream serverDataOutput = null;
         try {
-            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            Parent  myNewScens = FXMLLoader.load(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
+            serverDataOutput = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+            JSONObject challengeJson= new JSONObject();
+            challengeJson.put("type", 7);
+            serverDataOutput.println(challengeJson.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            serverDataOutput.close();
+        }
+        
+        
+
+    }
+
+    public void navegatToRecorde(ArrayList<OldGames> oldGames) {
+        try {
+           
+            Stage stage = (Stage)recordsBut.getScene().getWindow();
+           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
+          
+           Parent myNewScens = fxmlLoader.load();
             Scene scene = new Scene(myNewScens);
+             RecordsListController recordsList = fxmlLoader.getController();
+             recordsList.addRecords(oldGames);
             stage.setScene(scene);
             stage.setTitle("My New Scene");
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
     }
     
     
@@ -98,7 +123,12 @@ public class PlayerListController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        watingAlert = new Alert(Alert.AlertType.INFORMATION);
+        watingAlert = new Alert(Alert.AlertType.NONE);
+         ButtonType buttonTypeCancel = new ButtonType("", ButtonBar.ButtonData.CANCEL_CLOSE);
+        watingAlert.getButtonTypes().add(buttonTypeCancel);
+        watingAlert.setOnCloseRequest((event) -> {
+            watingAlert.hide();
+        });
         try {
             clientBufferedReader = new BufferedReader(new InputStreamReader(SocketClient.getInstant().getSocket().getInputStream()));
         } catch (IOException ex) {
@@ -108,59 +138,83 @@ public class PlayerListController implements Initializable {
         playersObservableList =FXCollections.observableArrayList();
         playerList.getStylesheets().add(getClass().getResource("listViewcss.css").toString());
         playerList.setCellFactory((param) -> {
-            return new PlayerCellController(watingAlert); //To change body of generated lambdas, choose Tools | Templates.
+            return  new PlayerCellController(watingAlert); //To change body of generated lambdas, choose Tools | Templates.
         });
         playerList.setItems(playersObservableList);
-         new Thread(() -> {
-             JSONObject playerJson;
+         startThread();  
+    }
+
+    public void startThread() {
+        
+        gameNotStarted=true;
+        new Thread(() -> {
+            JSONObject playerJson;
             while(gameNotStarted){
+                System.out.println("////////////////////////////////////////////////////////////////////////////");
                 try {
-                playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
+                    playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
                     System.out.println(playerJson.toString());
                     Long temp =(long)playerJson.get("type");
                     int type = temp.intValue();
                     
-                  switch(type){
-                    case 1:
-                        gameNotStarted=false;
-                        showDialog(playerJson);                     
-                        break;
-                        
-                    case 2:
-                        gameNotStarted =false;
-                        watingAlert.close();
-                        Platform.runLater(() -> {
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/gameBoard/OnlineGameBoard.fxml")));
-                        
-                        Parent root = fxmlLoader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage =(Stage) recordsBut.getScene().getWindow();
-                        OnlineGameBoardController gameBoard =fxmlLoader.<OnlineGameBoardController>getController();
-                        gameBoard.setTurn(1);
-                        
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException ex) {
-                        Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+                    switch(type){
+                        case 1:
+                            
+                            gameNotStarted=false;
+                            showDialog(playerJson);
+                            
+                            break;
+                            
+                        case 2:
+                            
+                            gameNotStarted =false;
+                            
+                            Platform.runLater(() -> {
+                                watingAlert.close();
+                                try {
+                                    FXMLLoader fxmlLoader = new FXMLLoader((getClass().getResource("/gameBoard/OnlineGameBoard.fxml")));
+                                    
+                                    Parent root = fxmlLoader.load();
+                                    Scene scene = new Scene(root);
+                                    Stage stage =(Stage) recordsBut.getScene().getWindow();
+                                    OnlineGameBoardController gameBoard =fxmlLoader.<OnlineGameBoardController>getController();
+                                    gameBoard.setTurn(1);
+                                    
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+                            break;
+                        case 3:
+                            Platform.runLater(() -> {
+                                watingAlert.close();
+                                watingAlert.setContentText("request is rejection");
+                                watingAlert.show();
+                            });
+                            
+                            break;
+                            
+                        case 4:
+                            
+                            addPlayerToList(playerJson);
+                            break;
+                         case 5:
+                            getOldGames(playerJson);
+                            navegatToRecorde(new ArrayList<OldGames>() );
+                            break;
+                            
                     }
-                        });
-                        break;
-
-                    case 4:
-                        
-                        addPlayerToList(playerJson);
-                        break;
-                    
-                }
                 } catch (IOException ex) {
+                    gameNotStarted= false;
                     Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
-        }).start();  
+        }).start();
     }   
 
     private void addPlayerToList(JSONObject playerJson) {
@@ -186,11 +240,17 @@ public class PlayerListController implements Initializable {
         dialogController.setUserName((String)playerJson.get("userName"));
         Scene scene = new Scene(parent, 300, 200);
         Stage stage = new Stage();
+        stage.setMaxHeight(300);
+        stage.setWidth(500);
+        stage.setMinHeight(300);
+        stage.setMinWidth(500);
         Stage mainStage =(Stage) recordsBut.getScene().getWindow();
         dialogController.setMainStage(mainStage);
+        dialogController.setPlayerListControler(this);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        
          } catch (IOException ex) {
                 Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -217,6 +277,12 @@ public class PlayerListController implements Initializable {
             Players.add(player);
         }
        return Players;
+    }
+
+    private void getOldGames(JSONObject playerJson) {
+        ArrayList<OldGames> oldGames= new ArrayList<>();
+        JSONArray  GamesArray= (JSONArray)playerJson.get("");
+        
     }
     
     

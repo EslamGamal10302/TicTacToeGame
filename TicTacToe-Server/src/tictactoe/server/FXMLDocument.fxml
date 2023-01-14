@@ -20,12 +20,7 @@
             </ImageView>
             <Pane>
                <children>
-                  <Button layoutX="59.0" layoutY="241.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: rgb(255,255,51);" text="Start">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="399.0" layoutY="241.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="134.0" style="-fx-background-color: rgb(255,255,51);" text="Stop">
+                  <Button layoutX="59.0" layoutY="241.0" mnemonicParsing="false" onAction="#startButtenIsPresed" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: rgb(255,255,51);" text="Start">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>

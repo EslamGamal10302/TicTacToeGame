@@ -80,9 +80,7 @@ public class TwoPlayersGameBoardController implements Initializable {
     @FXML
     private ImageView player_2;
     
-     @FXML
-    private Button record;
-     
+    
       @FXML
     private MediaView music; 
      
@@ -553,11 +551,11 @@ public class TwoPlayersGameBoardController implements Initializable {
         arrangedPlayed = new int [10];
          counter = 1;
          
-       Media media = new Media(getClass().getResource("/assets/music.mp3").toExternalForm());
-       mediaPlayer= new MediaPlayer(media);
-       music.setMediaPlayer(mediaPlayer);
-       mediaPlayer.play();       
-        //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      Media media = new Media(getClass().getResource("/assets/music.mp3").toExternalForm());
+      mediaPlayer= new MediaPlayer(media);
+      music.setMediaPlayer(mediaPlayer);
+      mediaPlayer.play();       
+     // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
     

@@ -34,11 +34,6 @@
                         <Font name="System Bold Italic" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="recordingButton" layoutX="630.0" layoutY="518.0" mnemonicParsing="false" onAction="#showRecord" prefHeight="58.0" prefWidth="161.0" style="-fx-background-color: #ffff66; -fx-background-radius: 20;" text="Recordings">
-                     <font>
-                        <Font name="System Bold Italic" size="24.0" />
-                     </font>
-                  </Button>
                   <ImageView fitHeight="91.0" fitWidth="346.0" layoutX="230.0" layoutY="25.0" pickOnBounds="true">
                      <image>
                         <Image url="@../assets/tile.png" />

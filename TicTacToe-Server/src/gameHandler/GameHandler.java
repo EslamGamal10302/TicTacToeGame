@@ -27,9 +27,18 @@ public class GameHandler {
     private String[] playedMoves;
     private int currentTurn;
     private JSONObject moveJson;
+
+    private boolean gameDidStarted;
+
     //private ArrayList<Integer> move;
     private int move[];
+<<<<<<< HEAD
     int i = 1;
+=======
+    int i=1;
+
+
+>>>>>>> afeb34542dd7f60c2e28a85b6c1743c8aa68a6a2
 
     public GameHandler() {
         moveJson = new JSONObject();
@@ -263,8 +272,14 @@ public class GameHandler {
             }
             if (boardNotFill) {
                 moveJson.put("gameStat", 0);
+<<<<<<< HEAD
                 setWinposition(0, 0);
             } else {
+=======
+                setWinposition(0,0);
+            }else{
+                gameDidStarted=false;
+>>>>>>> afeb34542dd7f60c2e28a85b6c1743c8aa68a6a2
                 moveJson.put("gameStat", 3);
                 setWinposition(0, 0);
             }
@@ -273,8 +288,14 @@ public class GameHandler {
     }
 
     private void setWinposition(int position1, int position2) {
+<<<<<<< HEAD
         moveJson.put("winPosition1", position1);
         moveJson.put("winPosition2", position2);
+=======
+        gameDidStarted=false;
+       moveJson.put("winPosition1", position1);
+       moveJson.put("winPosition2", position2);
+>>>>>>> afeb34542dd7f60c2e28a85b6c1743c8aa68a6a2
     }
 
     void sendMassigeToPlayer(String turnMassige) {
@@ -282,6 +303,7 @@ public class GameHandler {
         player2.sendTurn(turnMassige);
     }
 
+<<<<<<< HEAD
     public void dataOfGame() {
         Game dataGame = new Game();
         dataGame.setPlayer_1(player1.userName);
@@ -305,5 +327,71 @@ public class GameHandler {
         } catch (SQLException ex) {
             Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+
+    public void setGameDidStarted(boolean gameDidStarted) {
+        this.gameDidStarted = gameDidStarted;
     }
+
+    public boolean isGameDidStarted() {
+        return gameDidStarted;
+    }
+
+    void didSurrender(PlayerHandler player) {
+        if(player==player1){
+             moveJson.put("position", -1);
+             moveJson.put("playerTurn", -1);
+            moveJson.put("gameStat", 4);
+            moveJson.put("winPosition1", 0);
+            moveJson.put("winPosition2", 0);
+            player2.sendTurn(moveJson.toString());
+        }else{
+              moveJson.put("position", -1);
+            moveJson.put("playerTurn", -1);
+            moveJson.put("gameStat", 4);
+            moveJson.put("winPosition1", 0);
+            moveJson.put("winPosition2", 0);
+            player1.sendTurn(moveJson.toString());
+        }
+         gameDidStarted=false;
+    }
+    
+
+    public void dataOfGame (){
+         Game dataGame = new Game();
+                dataGame.setPlayer_1(player1.userName);
+                dataGame.setPlayer_2(player2.userName);
+                dataGame.setStep_1(move[1]);
+                dataGame.setStep_2(move[2]);
+                dataGame.setStep_3(move[3]);
+                dataGame.setStep_4(move[4]);
+                dataGame.setStep_5(move[5]);
+                dataGame.setStep_6(move[6]);
+                dataGame.setStep_7(move[7]);
+                dataGame.setStep_8(move[8]);
+                dataGame.setStep_9(move[9]);
+                dataGame.setStatus(1);
+                //Date date = new Date();
+                //dataGame.setDate((java.sql.Date) date);
+                java.sql.Date date=new java.sql.Date(System.currentTimeMillis());
+                dataGame.setDate( date);
+                try {
+                    GamesDAL.insertGame(dataGame);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+>>>>>>> afeb34542dd7f60c2e28a85b6c1743c8aa68a6a2
+    }
+
+    void setPlayerStates() {
+        int status=1;
+        try {
+            DataAccessmethods.online(status,player1.userName, player2.userName);
+            player1.sendPlayersListToAll();
+            player2.sendPlayersListToAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

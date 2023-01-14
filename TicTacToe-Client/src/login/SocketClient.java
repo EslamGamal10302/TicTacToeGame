@@ -55,11 +55,17 @@ public class SocketClient {
         return  mySocket;
     }
     public void CloseSocket() throws IOException{
-       
+        if(isInitialized){
             mySocket.close();
             isInitialized = false;
             System.out.println( "Socket is close" );
+        }
               
     }
+
+    public boolean isIsInitialized() {
+        return isInitialized;
+    }
+    
     
 }

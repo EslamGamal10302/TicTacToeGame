@@ -19,7 +19,7 @@ public class moveJsonMaker {
         return positionJson.toString();
     }
      public static PlayerMove getMove(String jsonString) throws ParseException{
-         System.out.println("jsonString");
+      
         JSONObject moveJson= (JSONObject) new JSONParser().parse(jsonString);
         
         long tempPosition = ((long)moveJson.get("position"));
