@@ -11,32 +11,72 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="601.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.SignupController">
    <children>
       <StackPane layoutY="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="399.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="601.0" fitWidth="808.0" pickOnBounds="true">
                <image>
-                  <Image url="@screen%202@1x.png" />
+                  <Image url="@../assets/background.jpg" />
                </image>
             </ImageView>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="signUp" layoutX="268.0" layoutY="297.0" mnemonicParsing="false" onAction="#signUpButtonAction" prefHeight="21.0" prefWidth="67.0" style="-fx-background-color: rgb(255,255,102);" text="sign up">
+                  <Button fx:id="signUp" layoutX="366.0" layoutY="528.0" mnemonicParsing="false" onAction="#signUpButtonAction" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 20;" text="sign up">
                      <font>
-                        <Font name="AmdtSymbols" size="12.0" />
+                        <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="signUpUserName" layoutX="229.0" layoutY="84.0" prefHeight="31.0" prefWidth="134.0" />
-                  <TextField fx:id="email" layoutX="229.0" layoutY="142.0" prefHeight="31.0" prefWidth="134.0" />
-                  <PasswordField fx:id="signUpPassword" layoutX="229.0" layoutY="200.0" prefHeight="31.0" prefWidth="134.0" />
-                  <PasswordField fx:id="signUpConfirmPassword" layoutX="226.0" layoutY="260.0" prefHeight="25.0" prefWidth="141.0" />
-                  <Text fx:id="signUp_repeat" fill="#da0e0e" layoutX="169.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="74.13671875">
+                  <TextField fx:id="signUpUserName" layoutX="333.0" layoutY="190.0" prefHeight="43.0" prefWidth="271.0">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font></TextField>
+                  <TextField fx:id="email" layoutX="334.0" layoutY="270.0" prefHeight="43.0" prefWidth="271.0">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="signUpPassword" layoutX="335.0" layoutY="355.0" prefHeight="43.0" prefWidth="271.0">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font></PasswordField>
+                  <PasswordField fx:id="signUpConfirmPassword" layoutX="337.0" layoutY="428.0" prefHeight="43.0" prefWidth="271.0">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font></PasswordField>
+                  <Text fx:id="signUp_repeat" fill="#da0e0e" layoutX="344.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="363.4960913658142">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Button fx:id="exit" layoutX="352.0" layoutY="297.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: rgb(255,255,102);" text="Home" />
+                  <Button fx:id="exit" layoutX="64.0" layoutY="528.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="51.0" prefWidth="164.0" style="-fx-background-color: rgb(255,255,102); -fx-background-radius: 20;" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font></Button>
+                  <Text fill="#ffff66" layoutX="88.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user name">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffff66" layoutX="82.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffff66" layoutX="82.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffff66" layoutX="82.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#ffff66" layoutX="301.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
+                     <font>
+                        <Font name="System Bold Italic" size="64.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>

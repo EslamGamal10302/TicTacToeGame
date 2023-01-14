@@ -41,6 +41,9 @@ public class WinController implements Initializable {
         
     @FXML
     private Button playAgain;
+    
+    @FXML
+    private Button replay;
 
     @FXML
     private Button exit;
@@ -58,32 +61,49 @@ public class WinController implements Initializable {
     void playAgainAction(MouseEvent event) {
         mediaPlayer.stop();
      try {
-            Utility.changeTOScene(getClass(), event, "/gameBoard/TwoPlayersGameBoard.fxml");
+            Utility.changeTOScene(getClass(), event, "/assets/ReplayBoard.fxml");
         } catch (Exception ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }    
 
     }
     
+    @FXML
+    void replayAction(MouseEvent event) {
+        mediaPlayer.stop();
+       try {
+            Utility.changeTOScene(getClass(), event, "/assets/ReplayBoard.fxml");
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
+    
+    
+    
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO      "/assets/loser.mp4"       "file:/G:/ITI/loser.mp4"   new Media(Paths.get("04.mp3").toUri().toString());
       //  String myVideo = ("/assets/loser.mp4");
-        Media media = new Media(getClass().getResource("/assets/winner.mp4").toExternalForm());
-        mediaPlayer= new MediaPlayer(media);
-        video.setMediaPlayer(mediaPlayer);
-        video.setFitHeight(450);
-        video.setFitWidth(350);
-        mediaPlayer.play();
-        //winText.setText(value);
         int x= TwoPlayersGameBoardController.getWinner();
+        Media media ;
         if (x == 1){
          winText.setText("player 1 wins");
+         media = new Media(getClass().getResource("/assets/winner.mp4").toExternalForm());
+        } else if (x == 2){
+         winText.setText("player 2 wins");
+         media = new Media(getClass().getResource("/assets/winner.mp4").toExternalForm());
+        }   else {
+         winText.setText("drawn");
+         media = new Media(getClass().getResource("/assets/drwan.mp4").toExternalForm());
         }
-        else {
-          winText.setText("player 2 wins");  
-        }
+        mediaPlayer= new MediaPlayer(media);
+        video.setMediaPlayer(mediaPlayer);
+        video.setFitHeight(400);
+        video.setFitWidth(700);
+        mediaPlayer.play();
+        //winText.setText(value);
+        
        
         
     }    

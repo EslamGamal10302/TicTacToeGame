@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import login.SocketClient;
 import org.json.simple.JSONObject;
 
+
 /**
  *
  * @author Dell
@@ -27,11 +28,12 @@ public class TicTacToeClient extends Application {
     public void start(Stage stage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/welcome/home.fxml"));
-
+        
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+
         /*stage.setMinHeight(400);
         stage.setMinWidth(605);
         stage.setMaxHeight(400);
@@ -49,6 +51,11 @@ public class TicTacToeClient extends Application {
                 }
             }
         });
+
+        stage.setMinHeight(630);
+        stage.setMinWidth(815);
+        stage.setMaxHeight(630);
+        stage.setMaxWidth(815);
         stage.show();
     }
     

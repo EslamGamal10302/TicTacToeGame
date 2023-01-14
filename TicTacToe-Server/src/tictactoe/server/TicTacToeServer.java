@@ -59,7 +59,7 @@ public class TicTacToeServer extends Application {
                     System.out.println(name_singUp);
                     System.out.println(email_signUp);
                     System.out.println(password_signUp);*/
-                    int status=1;
+                    int status=2;
                     int checkUnique=DataAccessmethods.checkUnique(positionJson);
                     if (checkUnique==0){
                           int x =DataAccessmethods.signUp(positionJson,status);
@@ -73,11 +73,12 @@ public class TicTacToeServer extends Application {
                     }
                }
                else if (type==2){
+                   int status=1;
                    String name_login =(String) positionJson.get("userName");
                    String password_login =(String) positionJson.get("password");
                    System.out.println(name_login);
                    System.out.println(password_login);
-                   int x =DataAccessmethods.login(positionJson);
+                   int x =DataAccessmethods.login(positionJson,status);
                    System.out.println(x);
                    if (x==1){
                       System.out.println("success"); 
