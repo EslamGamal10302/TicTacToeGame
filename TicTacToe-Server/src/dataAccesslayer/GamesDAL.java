@@ -24,7 +24,7 @@ public class GamesDAL {
         
                 int rs;             
                 DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+                Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
                 PreparedStatement ps = con.prepareStatement("insert into GAME VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" );
                 ps.setString(1,game.getPlayer_1());
                 ps.setString(2,game.getPlayer_2());
@@ -49,7 +49,7 @@ public class GamesDAL {
        
                                        //org.apache.derby.jdbc.ClientDriver        
                 DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
-               Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+               Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/playerDatabase", "root", "root");
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM Game WHERE player_1 =" +username+ " OR player_2 = "+username);
                 Game [] games = null ;
                 ResultSet rs = ps.executeQuery();

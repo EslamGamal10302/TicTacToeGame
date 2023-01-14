@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -71,6 +72,11 @@ public class PlayerListController implements Initializable {
        @FXML
     void goToRecords(ActionEvent event) {
         try {
+            PrintStream serverDataOutput = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+                        JSONObject challengeJson= new JSONObject();
+                        challengeJson.put("type", 7);
+                        
+                        serverDataOutput.println(challengeJson.toString());
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             Parent  myNewScens = FXMLLoader.load(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
             Scene scene = new Scene(myNewScens);
@@ -173,6 +179,10 @@ public class PlayerListController implements Initializable {
                             break;
                             
                         case 4:
+                            
+                            addPlayerToList(playerJson);
+                            break;
+                         case 5:
                             
                             addPlayerToList(playerJson);
                             break;
