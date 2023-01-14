@@ -170,7 +170,7 @@ public class PlayerHandler extends Thread {
         } catch (SQLException ex) {
             Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sendPlayersListToAll();
+       // sendPlayersListToAll();
     }
     
 

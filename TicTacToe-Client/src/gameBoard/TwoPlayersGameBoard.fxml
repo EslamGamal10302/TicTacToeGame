@@ -77,5 +77,6 @@
          </font>
       </Text>
       <MediaView fx:id="music" fitHeight="5.0" fitWidth="5.0" layoutX="27.0" layoutY="135.0" />
+      <MediaView fx:id="music" fitHeight="5.0" fitWidth="5.0" layoutX="70.0" layoutY="174.0" />
    </children>
 </AnchorPane>

@@ -31,6 +31,12 @@ public class OnlineGame {
     private String positionJson;
     private PlayerMove move;
     private boolean gameRuning;
+    public static int moveTurn[];
+
+    public static int[] getMoveTurn() {
+        return moveTurn;
+    }
+    int i=1;
 
     public OnlineGame(OnlineGameBoardController gameController) throws IOException {
         this.gameController = gameController;
@@ -39,10 +45,12 @@ public class OnlineGame {
         clientInputStream = new DataInputStream(serverSocket.getInputStream ());
         clientOutputStream = new PrintStream(serverSocket.getOutputStream ());   
         getMoveFromServer();
+        moveTurn=new int [10];
     }
     public void sendMoveToServer(int position){
        clientOutputStream.println(moveJsonMaker.createMoveJson(position));
-       
+       moveTurn[i]= position;
+       i++;
     }
 
     private void getMoveFromServer() {
@@ -54,6 +62,8 @@ public class OnlineGame {
                     String str = clientBufferedReader.readLine();
                     
                     move= moveJsonMaker.getMove(str);
+                    long position = (long) move.getPosition();
+                    moveTurn[i]= (int) position;
                     
                      System.out.println(move);
                 

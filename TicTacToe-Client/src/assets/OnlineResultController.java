@@ -66,7 +66,7 @@ public class OnlineResultController implements Initializable {
         mediaPlayer= new MediaPlayer(media);
         video.setMediaPlayer(mediaPlayer);
         video.setFitHeight(400);
-        video.setFitWidth(350);
+        video.setFitWidth(700);
         mediaPlayer.play();   
         
         
@@ -75,6 +75,8 @@ public class OnlineResultController implements Initializable {
 
     @FXML
     private void playAgainAction(MouseEvent event) {
+        mediaPlayer.pause();
+        Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
     }
 
     @FXML

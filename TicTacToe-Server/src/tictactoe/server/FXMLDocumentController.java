@@ -66,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
     }
-<<<<<<< HEAD
+
     
     public void changeStatistics (){
         
@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
           anchor.getChildren().add(barChart);
         
     }
-=======
+
     @FXML void startButtenIsPresed(ActionEvent event){
 
         if(!online){
@@ -217,7 +217,7 @@ public class FXMLDocumentController implements Initializable {
     }
    
     
->>>>>>> 52676c483d5cc50d2c2f5db784f0e0b31ad5dd09
+
 
  
     @Override
