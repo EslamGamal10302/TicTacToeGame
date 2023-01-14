@@ -240,6 +240,10 @@ public class PlayerListController implements Initializable {
         dialogController.setUserName((String)playerJson.get("userName"));
         Scene scene = new Scene(parent, 300, 200);
         Stage stage = new Stage();
+        stage.setMaxHeight(300);
+        stage.setWidth(500);
+        stage.setMinHeight(300);
+        stage.setMinWidth(500);
         Stage mainStage =(Stage) recordsBut.getScene().getWindow();
         dialogController.setMainStage(mainStage);
         dialogController.setPlayerListControler(this);

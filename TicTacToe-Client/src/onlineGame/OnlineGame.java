@@ -65,6 +65,7 @@ public class OnlineGame {
                     });
                 }else if(move.getGameStat()==4){
                 Platform.runLater(() -> {
+                    gameRuning=false;
                         gameController.opponentSurrender();
                     });
                 }

@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
+import tictactoe.server.DataAccessmethods;
 
 /**
  *
@@ -242,6 +243,17 @@ public class GameHandler {
                 } catch (SQLException ex) {
                     Logger.getLogger(GameHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
+    }
+
+    void setPlayerStates() {
+        int status=1;
+        try {
+            DataAccessmethods.online(status,player1.userName, player2.userName);
+            player1.sendPlayersListToAll();
+            player2.sendPlayersListToAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

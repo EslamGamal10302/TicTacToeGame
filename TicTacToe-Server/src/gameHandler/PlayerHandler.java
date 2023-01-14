@@ -37,7 +37,7 @@ public class PlayerHandler extends Thread {
     private boolean closeThread;
     private GameHandler gamelogic;
     private static Vector<PlayerHandler> clientsVector = new Vector<PlayerHandler>();
-    private static ArrayList<Player> playersList = new ArrayList<Player>();
+    private  ArrayList<Player> playersList = new ArrayList<Player>();
     private boolean isConected;
 
     public PlayerHandler(Socket clientSocket, String userName) {
@@ -70,6 +70,7 @@ public class PlayerHandler extends Thread {
                 JSONObject playerJson = (JSONObject) new JSONParser().parse(jsonString);
                 int type = ((Long) playerJson.get("type")).intValue();
                 System.out.println(type);
+                System.out.println("//////////////////////////////////////////////////)");
                 switch (type) {
                     case 1:
                         challengePlayer(playerJson);
@@ -101,6 +102,9 @@ public class PlayerHandler extends Thread {
                         break;
                     case 7:
                         sendRecordToUser();
+                        break;
+                    case 8:
+                        gamelogic.setPlayerStates();
                         break;
                 }
 
@@ -166,6 +170,7 @@ public class PlayerHandler extends Thread {
         } catch (SQLException ex) {
             Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+        sendPlayersListToAll();
     }
 
     void sendTurn(String turnMassige) {
@@ -230,4 +235,6 @@ public class PlayerHandler extends Thread {
         }
         
     }
+
+   
 }

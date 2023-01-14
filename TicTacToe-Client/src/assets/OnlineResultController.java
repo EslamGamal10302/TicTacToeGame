@@ -7,6 +7,7 @@ package assets;
 
 import gameBoard.BoardController;
 import gameBoard.OnlineGameBoardController;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,6 +20,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
+import login.SocketClient;
+import org.json.simple.JSONObject;
 import tictactoe.client.Utility;
 import welcome.HomeController;
 
@@ -40,7 +43,7 @@ public class OnlineResultController implements Initializable {
     @FXML
     private Button replay;
      private MediaPlayer  mediaPlayer ;
-
+     private PrintStream clientOutputStream;
     /**
      * Initializes the controller class.
      */
@@ -78,6 +81,11 @@ public class OnlineResultController implements Initializable {
     private void exitAction(MouseEvent event) {
         mediaPlayer.pause();
      try {
+          JSONObject positionJson= new JSONObject();
+            positionJson.put("type", 8);
+            
+            clientOutputStream = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream ());
+            clientOutputStream.println(positionJson.toString());
                             Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
                         } catch (Exception ex) {
                             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
