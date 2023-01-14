@@ -27,7 +27,7 @@ public class DataAccessmethods {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
-        PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS) VALUES (? , ? , ? ,? )");
+        PreparedStatement pst = con.prepareStatement("INSERT INTO PLAYER (USERNAME,PASSWORD,EMAIL,STATUS,NO_GAMES,SCORE) VALUES (? , ? , ? ,?,0 ,0 )");
         pst.setString(1, (String) positionJson.get("userName"));
         pst.setString(2, (String) positionJson.get("password"));
         pst.setString(3, (String) positionJson.get("email"));
@@ -86,14 +86,51 @@ public class DataAccessmethods {
         return result;
 
     }
-
-     public static int online(int status,String player1 ,String player2) throws SQLException {
+      public static int online(int status,String player1 ,String player2) throws SQLException {
         int result = 0;
         DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
             PreparedStatement pst_2 = con.prepareStatement("UPDATE  PLAYER  SET STATUS= ?  WHERE USERNAME =? OR  USERNAME =? ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             pst_2.setInt(1, status);
             pst_2.setString(2, player1);
+            pst_2.setString(3, player2);
+            int rs2 = pst_2.executeUpdate();
+            result = 1;
+        
+
+        con.commit();
+        pst_2.close();
+        con.close();
+
+        return result;
+
+    }
+       public static int noGame(String player1 ,String player2) throws SQLException {
+        int result = 0;
+        DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+            PreparedStatement pst_2 = con.prepareStatement("UPDATE  PLAYER  SET NO_GAMES=NO_GAMES+1  WHERE USERNAME =? OR  USERNAME =? ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+    
+            pst_2.setString(2, player1);
+            pst_2.setString(3, player2);
+            int rs2 = pst_2.executeUpdate();
+            result = 1;
+        
+
+        con.commit();
+        pst_2.close();
+        con.close();
+
+        return result;
+
+    }
+
+     public static int score(String player2) throws SQLException {
+        int result = 0;
+        DriverManager.registerDriver(new org.apache.derby.jdbc.ClientDriver());
+        Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/xo_game", "root", "root");
+            PreparedStatement pst_2 = con.prepareStatement("UPDATE  PLAYER  SET SCORE=SCORE+10  WHERE USERNAME =? ", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            
             pst_2.setString(3, player2);
             int rs2 = pst_2.executeUpdate();
             result = 1;

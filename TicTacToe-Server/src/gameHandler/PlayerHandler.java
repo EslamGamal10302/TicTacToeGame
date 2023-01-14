@@ -141,6 +141,7 @@ public class PlayerHandler extends Thread {
             Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     void sendTurn(String turnMassige) {
         serverDataOutput.println(turnMassige);

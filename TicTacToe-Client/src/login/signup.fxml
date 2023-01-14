@@ -43,7 +43,7 @@
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font></PasswordField>
-                  <Text fx:id="signUp_repeat" fill="#da0e0e" layoutX="344.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="363.4960913658142">
+                  <Text fx:id="signUp_repeat" fill="#da0e0e" layoutX="336.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="431.4960913658142">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

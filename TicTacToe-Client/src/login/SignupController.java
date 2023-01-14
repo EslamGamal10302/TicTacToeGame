@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -92,11 +93,17 @@ public class SignupController implements Initializable {
 
             signUp_repeat.setText("Please enter a valid mail");
 
+        }else if (signUpPassword.getText().length() < 5) {
+
+            signUp_repeat.setText("Your password less than 5 character");
+
         } else if (!signUpPassword.getText().equals(signUpConfirmPassword.getText())) {
 
             signUp_repeat.setText("Please check your password");
 
-        } else {
+        } //signUpPassword.textProperty().bind(Bindings.length(signUpPassword.textProperty())
+        //                        .asString("String length: %d"));
+        else {
             /*try {
                 // TODO
                 mySocket = new Socket("127.0.0.1", 5005);
