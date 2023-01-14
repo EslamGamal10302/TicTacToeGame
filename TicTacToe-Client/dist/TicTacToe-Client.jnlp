@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="TicTacToe-Client.jar" size="17295472" download="eager" />
+=======
+    <jar href="TicTacToe-Client.jar" size="17296246" download="eager" />
+>>>>>>> 52676c483d5cc50d2c2f5db784f0e0b31ad5dd09
     <jar href="lib\gson-2.2.2.jar" size="189285" download="eager" />
     <jar href="lib\javax.json-1.0.jar" size="78579" download="eager" />
     <jar href="lib\json-simple-1.1.1.jar" size="23737" download="eager" />

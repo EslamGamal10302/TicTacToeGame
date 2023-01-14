@@ -52,7 +52,7 @@ public class OnlineGame {
                 BufferedReader clientBufferedReader = new BufferedReader(new InputStreamReader(clientInputStream));
                 try {
                     String str = clientBufferedReader.readLine();
-                    System.out.println(str);
+                    
                     move= moveJsonMaker.getMove(str);
                     
                      System.out.println(move);
@@ -65,6 +65,7 @@ public class OnlineGame {
                     });
                 }else if(move.getGameStat()==4){
                 Platform.runLater(() -> {
+                    gameRuning=false;
                         gameController.opponentSurrender();
                     });
                 }
@@ -74,7 +75,7 @@ public class OnlineGame {
                         gameController.didTie();
                     });
                 }else if(move.getGameStat()==0){
-                     gameRuning=false;
+                   
                    gameController.changeTurn(move.getPlayerTurn()); 
                 }else{
                     Platform.runLater(() -> {
@@ -92,7 +93,8 @@ public class OnlineGame {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
                     Logger.getLogger(OnlineGame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } System.out.println(gameRuning);
+                System.out.println("onlineGame.OnlineGame.endloop");
             }
         }).start();
 

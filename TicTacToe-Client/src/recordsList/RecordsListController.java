@@ -7,6 +7,7 @@ package recordsList;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,14 +102,7 @@ public class RecordsListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         recordsObservableList =FXCollections.observableArrayList();
-        recordsObservableList.addAll(
-                new OldGames("ahmed", "ali", "player1"),
-                new OldGames("ahmed", "ali", "player1"), 
-                new OldGames("ahmed", "ali", "player1"),
-                new OldGames("ahmed", "ali", "player1")
-                 
-                 
-        );
+        
         recordsList.getStylesheets().add(getClass().getResource("listViewcss.css").toString());
         recordsList.setCellFactory((param) -> {
             return new RecordsListCellController(); //To change body of generated lambdas, choose Tools | Templates.
@@ -116,5 +110,9 @@ public class RecordsListController implements Initializable {
         recordsList.setItems(recordsObservableList);
         
     }    
+
+    public void addRecords(ArrayList<OldGames> oldGames) {
+        recordsObservableList.addAll(oldGames);
+    }
     
 }
