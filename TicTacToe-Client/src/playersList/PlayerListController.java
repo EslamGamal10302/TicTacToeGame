@@ -43,6 +43,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import recordsList.RecordsListController;
+import recordsList.recordsListCell.OldGames;
 
 /**
  * FXML Controller class
@@ -71,23 +73,38 @@ public class PlayerListController implements Initializable {
       
        @FXML
     void goToRecords(ActionEvent event) {
+        PrintStream serverDataOutput = null;
         try {
-            PrintStream serverDataOutput = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
-                        JSONObject challengeJson= new JSONObject();
-                        challengeJson.put("type", 7);
-                        
-                        serverDataOutput.println(challengeJson.toString());
-            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            Parent  myNewScens = FXMLLoader.load(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
+            serverDataOutput = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream());
+            JSONObject challengeJson= new JSONObject();
+            challengeJson.put("type", 7);
+            serverDataOutput.println(challengeJson.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            serverDataOutput.close();
+        }
+        
+        
+
+    }
+
+    public void navegatToRecorde(ArrayList<OldGames> oldGames) {
+        try {
+           
+            Stage stage = (Stage)recordsBut.getScene().getWindow();
+           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/recordsList/RecordsListFMLX.fxml"));
+          
+           Parent myNewScens = fxmlLoader.load();
             Scene scene = new Scene(myNewScens);
+             RecordsListController recordsList = fxmlLoader.getController();
+             recordsList.addRecords(oldGames);
             stage.setScene(scene);
             stage.setTitle("My New Scene");
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(PlayerListController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
     }
     
     
@@ -128,11 +145,12 @@ public class PlayerListController implements Initializable {
     }
 
     public void startThread() {
+        
         gameNotStarted=true;
         new Thread(() -> {
             JSONObject playerJson;
             while(gameNotStarted){
-                System.out.println("playersList.PlayerListController.startThread()");
+                System.out.println("////////////////////////////////////////////////////////////////////////////");
                 try {
                     playerJson= (JSONObject) new JSONParser().parse(clientBufferedReader.readLine());
                     System.out.println(playerJson.toString());
@@ -183,8 +201,8 @@ public class PlayerListController implements Initializable {
                             addPlayerToList(playerJson);
                             break;
                          case 5:
-                            
-                            addPlayerToList(playerJson);
+                            getOldGames(playerJson);
+                            navegatToRecorde(new ArrayList<OldGames>() );
                             break;
                             
                     }
@@ -255,6 +273,12 @@ public class PlayerListController implements Initializable {
             Players.add(player);
         }
        return Players;
+    }
+
+    private void getOldGames(JSONObject playerJson) {
+        ArrayList<OldGames> oldGames= new ArrayList<>();
+        JSONArray  GamesArray= (JSONArray)playerJson.get("");
+        
     }
     
     

@@ -5,6 +5,8 @@
  */
 package gameHandler;
 
+import dataAccesslayer.Game;
+import dataAccesslayer.GamesDAL;
 import dataAccesslayer.Player;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -96,6 +98,9 @@ public class PlayerHandler extends Thread {
                         break;
                     case 6:
                         gamelogic.didSurrender(this);
+                        break;
+                    case 7:
+                        sendRecordToUser();
                         break;
                 }
 
@@ -210,5 +215,19 @@ public class PlayerHandler extends Thread {
         } catch (SQLException ex) {
             Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void sendRecordToUser() {
+        try {
+            ArrayList<Game> Games =GamesDAL.getGameFromDatabase(userName);
+            JSONArray array=new JSONArray();
+            for (Game Game : Games) {
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

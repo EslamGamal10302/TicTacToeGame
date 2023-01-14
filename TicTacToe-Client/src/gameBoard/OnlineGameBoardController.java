@@ -106,7 +106,7 @@ public class OnlineGameBoardController implements Initializable {
             
             clientOutputStream = new PrintStream(SocketClient.getInstant().getSocket().getOutputStream ());
             clientOutputStream.println(positionJson.toString());
-            Utility.changeTOScene(getClass(), event, "PlayerListFXML.fxml");
+            Utility.changeTOScene(getClass(), event, "/playersList/PlayerListFXML.fxml");
         } catch (IOException ex) {
             Logger.getLogger(OnlineGameBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,6 +160,7 @@ public class OnlineGameBoardController implements Initializable {
         sendMove(2, event);
     }
     private void sendMove(int position,MouseEvent event){
+        
         System.out.println(playerTurn+" , "+currentTurn);
         if(!playerMoved && playerTurn==currentTurn && ((ImageView)event.getSource()).getImage()==null ){
            onlineGameHandler.sendMoveToServer(position);
